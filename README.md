@@ -23,16 +23,16 @@ Install the npm module in your app directory.
 ```sh
 npm install
 ```
+
 ### web app images
   <img src="./p1.PNG" alt="MERN stack" align="left" width="250">
   <img src="./p2.PNG" alt="MERN stack" align="right" width="250"><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-
-
-
 ### Credits
-* Uses [pokemon-gif](https://www.npmjs.com/package/pokemon-gif) to retrieve links from [Pokestadium](http://www.pokestadium.com/tools/sprites).
-* There's already a component for this [here](https://github.com/jackrzhang/react-pokemon-gif) but it wasn't working in my case so I decided to create my own.
+```txt
+this web app specially i design because i know MERN stack but i not make my demo web app in mern stack so specially i design
+this web app to inhabce my skill.
+```
 
 
 ## Author
@@ -43,7 +43,7 @@ npm install
 
 
 ## Contribute
-Found a bug, please [create an issue](https://github.com/anshumanv/react-poke-sprites/issues/new)
+Found a bug, please contact my website [create an issue](https://github.com/anshumanv/react-poke-sprites/issues/new)
 
 
 ## License
