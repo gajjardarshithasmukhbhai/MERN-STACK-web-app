@@ -35,7 +35,7 @@ this web app to inhabce my skill.
 ```
 ## Tools and Technology
 
-<img src="https://img.shields.io/badge/reactJs-frontend-yellowgreen.svg" align="left">
+<img src="https://img.shields.io/badge/reactJs-frontend-yellowgreen.svg">
 <img src="https://img.shields.io/badge/NodeJs-backend-blue.svg" align="center">
 <img src=" https://img.shields.io/badge/expressJS-backend-yellow.svg" align="right">
 <img src=" https://img.shields.io/badge/encryption-backend-yellow.svg" align="left">
