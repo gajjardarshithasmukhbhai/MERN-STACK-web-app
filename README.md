@@ -25,8 +25,7 @@ npm install
 ```
 ### web app images
   <img src="./p1.PNG" alt="MERN stack" align="left" width="250">
-  <img src="./p1.PNG" alt="MERN stack" align="right" width="250">
-<br>
+  <img src="./p2.PNG" alt="MERN stack" align="right" width="250"><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 
 
