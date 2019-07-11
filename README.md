@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./lugia.gif" alt="Lugia" align="center" width="150">
+  <img src="http://giphy.com/go/ODJhZmIzMzYtf" alt="Lugia" align="center" width="150">
 </p>
 
 <h1 align="center"> MERN stack base Todo chatting app </h1>
