@@ -24,9 +24,12 @@ Install the npm module in your app directory.
 npm install
 ```
 ### web app images
-<p align="center">
-  <img src="./p1.png" alt="MERN stack" align="center" width="250">
-</p>
+  <img src="./p1.PNG" alt="MERN stack" align="left" width="250">
+  <img src="./p1.PNG" alt="MERN stack" align="right" width="250">
+<br>
+
+
+
 
 ### Credits
 * Uses [pokemon-gif](https://www.npmjs.com/package/pokemon-gif) to retrieve links from [Pokestadium](http://www.pokestadium.com/tools/sprites).
