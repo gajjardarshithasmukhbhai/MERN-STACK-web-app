@@ -2,7 +2,7 @@
   <img src="https://media.giphy.com/media/b2CD0Qrq2ulwY/giphy.gif" alt="MERN stack" align="center" width="250">
 </p>
 
-<h1 align="center"> MERN stack base Todo chatting app </h1>
+<h1 align="center"> MERN stack base Todo chatting app in Devlopment Phase </h1>
 <p align="center">
 <a href="https://www.npmjs.com/package/react-poke-sprites">
   <img src="https://img.shields.io/npm/v/react-poke-sprites.svg?style=for-the-badge" align="center">
@@ -34,16 +34,15 @@ this web app specially i design because i know MERN stack but i not make my demo
 this web app to inhabce my skill.
 ```
 ## Tools and Technology
-
-<img src="https://img.shields.io/badge/reactJs-frontend-yellowgreen.svg">
+<img src="https://img.shields.io/badge/reactJs-frontend-yellowgreen.svg" align="center">
 <img src="https://img.shields.io/badge/NodeJs-backend-blue.svg" align="center">
-<img src=" https://img.shields.io/badge/expressJS-backend-yellow.svg" align="right">
-<img src=" https://img.shields.io/badge/encryption-backend-yellow.svg" align="left">
+<img src=" https://img.shields.io/badge/expressJS-backend-yellow.svg" align="center">
+<img src=" https://img.shields.io/badge/encryption-backend-yellow.svg" align="center">
 <img src="https://img.shields.io/badge/bootstrap-frontend-yellowgreen.svg" align="center">
-<img src="https://img.shields.io/badge/RESTAPI-backend-yellowgreen.svg" align="right">
-<img src="https://img.shields.io/badge/SocketIO-webrtc-yellowgreen.svg" align="left">
+<img src="https://img.shields.io/badge/RESTAPI-backend-yellowgreen.svg" align="center">
+<img src="https://img.shields.io/badge/SocketIO-webrtc-yellowgreen.svg" align="center">
 <img src="https://img.shields.io/badge/MongoDB-Database-yellowgreen.svg" align="center">
-<img src="https://img.shields.io/badge/reactMaterialUi-frontend-yellowgreen.svg" align="right">
+<img src="https://img.shields.io/badge/reactMaterialUi-frontend-yellowgreen.svg" align="center">
 
 ## Author
 
