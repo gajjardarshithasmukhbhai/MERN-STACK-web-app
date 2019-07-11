@@ -1,68 +1,82 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="./lugia.gif" alt="Lugia" align="center" width="150">
+</p>
 
-## Available Scripts
+<h1 align="center"> react-poke-sprites </h1>
+<p align="center">
+<a href="https://www.npmjs.com/package/react-poke-sprites">
+  <img src="https://img.shields.io/npm/v/react-poke-sprites.svg?style=for-the-badge" align="center">
+</a>
 
-In the project directory, you can run:
+<a href="https://www.npmjs.com/package/react-poke-sprites">
+  <img src="https://img.shields.io/npm/dt/react-poke-sprites.svg?style=for-the-badge" align="center">
+</a>
 
-### `npm start`
+<a href="https://github.com/anshumanv/react-poke-sprites">
+  <img src="https://img.shields.io/github/license/anshumanv/react-poke-sprites.svg?style=for-the-badge" align="center">
+</a>
+</p>
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<hr>
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+<p align="center">A react component that renders animated pokemon sprites</p>
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
+Install the npm module in your app directory.
+```sh
+npm i -S react react-dom react-poke-sprites
+```
 
-### `npm run build`
+### Usage
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```js
+import React from 'React';
+import ReactDOM from 'react-dom'
+import PokeSprite from 'react-poke-sprites'
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+ReactDOM.render(
+	<PokeSprite
+		pokemon={'Lugia'}
+		className="lugia-class"
+	/>,
+	document.querySelector('#root')
+)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
 
-### `npm run eject`
+## Props
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* **pokemon** - Pass the name or the ID of the pokemon.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* **className** - Pass in a class name to modify as you see fit.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Related
 
-## Learn More
+* A corresponding Vue.js component is [here](https://github.com/anshumanv/vue-poke-sprites).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Credits
+* Uses [pokemon-gif](https://www.npmjs.com/package/pokemon-gif) to retrieve links from [Pokestadium](http://www.pokestadium.com/tools/sprites).
+* There's already a component for this [here](https://github.com/jackrzhang/react-pokemon-gif) but it wasn't working in my case so I decided to create my own.
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Author
 
-### Analyzing the Bundle Size
+[Anshuman Verma](https://github.com/anshumanv)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+[<img src="https://image.flaticon.com/icons/svg/185/185961.svg" width="35" padding="10">](https://twitter.com/Anshumaniac12)
+[<img src="https://image.flaticon.com/icons/svg/185/185964.svg" width="35" padding="10">](https://linkedin.com/in/anshumanv12)
+[<img src="https://image.flaticon.com/icons/svg/185/185981.svg" width="35" padding="10">](https://www.facebook.com/anshumanv12)
+[<img src="https://image.flaticon.com/icons/svg/985/985680.svg" width="35" padding="10">](https://www.paypal.me/AnshumanVerma)
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Contribute
+Found a bug, please [create an issue](https://github.com/anshumanv/react-poke-sprites/issues/new)
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## License
 
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/anshumanv/react-poke-sprites/blob/master/LICENSE)
+> © Anshuman Verma
