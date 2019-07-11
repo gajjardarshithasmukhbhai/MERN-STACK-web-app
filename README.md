@@ -33,7 +33,17 @@ npm install
 this web app specially i design because i know MERN stack but i not make my demo web app in mern stack so specially i design
 this web app to inhabce my skill.
 ```
+## Tools and Technology
 
+<img src="https://img.shields.io/badge/reactJs-frontend-yellowgreen.svg" align="left">
+<img src="https://img.shields.io/badge/NodeJs-backend-blue.svg" align="center">
+<img src=" https://img.shields.io/badge/expressJS-backend-yellow.svg" align="right">
+<img src=" https://img.shields.io/badge/encryption-backend-yellow.svg" align="left">
+<img src="https://img.shields.io/badge/bootstrap-frontend-yellowgreen.svg" align="center">
+<img src="https://img.shields.io/badge/RESTAPI-backend-yellowgreen.svg" align="right">
+<img src="https://img.shields.io/badge/SocketIO-webrtc-yellowgreen.svg" align="left">
+<img src="https://img.shields.io/badge/MongoDB-Database-yellowgreen.svg" align="center">
+<img src="https://img.shields.io/badge/reactMaterialUi-frontend-yellowgreen.svg" align="right">
 
 ## Author
 
@@ -43,10 +53,10 @@ this web app to inhabce my skill.
 
 
 ## Contribute
-Found a bug, please contact my website [create an issue](https://github.com/anshumanv/react-poke-sprites/issues/new)
+Found a bug, please contact my website [create an issue](https://github.com/gajjardarshithasmukhbhai/MERN-STACK-web-app/issues/new)
 
 
 ## License
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/anshumanv/react-poke-sprites/blob/master/LICENSE)
-> © Darshit Gajjar
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/gajjardarshithasmukhbhai/react-poke-sprites/blob/master/LICENSE)
+> © Darshit Gajjar(Full stack devloper)
