@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="http://giphy.com/go/ODJhZmIzMzYtf" alt="MERN stack" align="center" width="150">
+  <img src="https://media.giphy.com/media/b2CD0Qrq2ulwY/giphy.gif" alt="MERN stack" align="center" width="150">
 </p>
 
 <h1 align="center"> MERN stack base Todo chatting app </h1>
