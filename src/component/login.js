@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import {Redirect} from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import  'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
@@ -18,17 +19,14 @@ import '../css/login.css';
 import Box from '@material-ui/core/Box';
 import { sizing } from '@material-ui/system';
 import Grid from '@material-ui/core/Grid';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 const theme = createMuiTheme();
-// note:
-// always createMuiTheme() e configuration che check krva console.log(theme) kari ne tamari exctly te object che eni value
-// change kari nakhvi
-// jyare configuration karya pachi e theme ne apply te MuiThemeProvider
-// ma te thay che
-console.log(theme);
 const blueTheme = createMuiTheme({ palette: {main: blue[100]} })
 const buttonTheme = createMuiTheme({ palette: { main:green }})
-
-
 const margin=style ({
     marginLeft: theme.spacing.unit,
     width:"80%",
@@ -38,53 +36,22 @@ const button=style ({
     backgroundColor:green,
   })
 
-// note:
-// tme const [state,setState]=useState({
-//     email:"",
-//   }) 
-
-//   kro ena thi tmare te state te overwrite thai jya
-//   etle jo tamare update evu te karva magta hoy 
-//   to tamre possible nahi thay but enu solution
-// e che ke tamare te pehla na state ma update karvanu
-// che jene lidhe tamre automatic update thay nake tamre
-// overwrite thai jay 
-// jena mate tamare state ne te merge te karvu padse
-// je ne tame aa rite kari sako
-    // |
-// setState({...state,
-//       email:k.target.value,
-//     })
-// na ke aa rite
-        // |<---avu kyare na krvu anathi tame te overwrite kro cho
-// setState({
-//       email:k.target.value,
-//     })
-  // const [state,setState]=useState({
-  //   email:"",
-      // open:true,
-  // })
-  // |
-  // ane tame aa rite pan kari sako uprna same state ne
-  // const [open,setopen]=useState[true];
-  // const [email,setemail]=useState[""];
-//useEffect ma useEffect(() => console.log('mounted or updated'),[]); aa rite karo to te
-// akj vakhat call thase because last ma [] che je componentDidMount tarike vartse
-//jyare without [] e componentwillupdate tarike
-// otherwise te always call
-//jyare []<-ma tme te je state change ke props change
-// thay te rakhavi sako
 
 const Login=props=> {
-  // useEffect(() => console.log('mounted or updated'),[]);
-  //tame state and setState ni jagya e biju  
-  // kai pan name api sako cho
+
   const [state,setState]=useState({
     email:"",
-    password:null
+    password:null,
+    open:false,
+    err:"",
+    aftersign:false,
   })
   // const [email,setEmail]=useState["darshit"];
-
+  const closedialog=()=>{
+      setState({...state,
+        open:false,
+      })
+    }
   const email=(k)=>{
     setState({...state,
       email:k.target.value,
@@ -95,7 +62,13 @@ const Login=props=> {
       password:k.target.value,
     })
   }
-  const submit=()=>{
+  let aftersign=()=>{
+    if(state.aftersign)
+    {
+      return <Redirect to="/aftersign"/>
+    }
+  }
+  let submit=(ed)=>{
     fetch('http://localhost:7080/feed/Loginpost',{
       method:'POST',
       body:JSON.stringify({
@@ -104,47 +77,72 @@ const Login=props=> {
       }),
       headers:{
         'Content-Type':'application/json',
-        Accept:'application/json',
       }
-    }).then(res=>{
-      if(res.status===422)
+    })
+    .then(res=>{
+    if(res.status===400)
     {
       console.log("i have problem");
       throw new Error(
-            "Validation failed. Make sure the email address isn't used yet!"
+            "Validation failed.your password is wrong"
+      );
+    }
+    else if(res.status===500)
+    {
+      throw new Error(
+            "Internet error check your internet connection"
           );
     }
-    else if (res.status !== 200 && res.status !== 201) {
-          console.log('Error!');
-         throw new Error('Creating a user account your password length is minimum 6 to 9 and email is authenticate');
-
-        }
-        // setState({...state,
-        //   aftersignin:true,
-        // })
-        setState({...state,
-          email:"",
-          password:"",
-          retype:"",
-          aftersign:true,
-        })
+    else if(res.status===510)
+    {
+      throw new Error(
+            "you have no account in our database"
+          );
+    }
+    setState({...state,
+      email:"",
+      password:"",
+      retype:"",
+      aftersign:true,
+    })
     return res.json();
-
+  })
+  .then(resData=>{
+     console.log(resData);
+      setState({
+          aftersign:true,
+      })
     })
-    .then(data=>{
-      console.log("data");
-    })
-    .catch(err=>{
-      console.log("my error",err);
-    });
+  .catch(err=>{
+    console.log("react",err.message);
+    let error=err.message;
+    setState({...state,
+        open:true,
+        err:error
+      })
+  });
+    
   }
-  // const emailcheck=(k)=>{
-  //   let email=k.target.value;
-  //   setEmail(email);
-  // }
   return (
-
   		<div class="container">
+      <Dialog
+        open={state.open}
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+          Hello sir/madam
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            {state.err}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button  color="primary" onClick={closedialog}>
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
 <Grid container>
       <Grid item xs={12} md={12} sm={12} xs={12}>
 
@@ -222,6 +220,8 @@ const Login=props=> {
 
 				</Grid>
 </Grid>
+        {aftersign()}
+
 				</div>
 
   	)
