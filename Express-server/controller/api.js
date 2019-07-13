@@ -1,10 +1,42 @@
 let Signup=require('../modal/signup.js');
 let getdb=require('../utility/database.js');
 var validator = require('validator');
+let Login=require('../modal/login.js');
+let bcrypt=require('bcryptjs');
 exports.getLogin=(req,res,next)=>{
     let email=req.body.email;
     let password=req.body.password;
-    console.log(email,password);
+    let array=[];
+    return Login.Logincheck(email,password)
+    .then(ed=>{
+        array=ed;
+        let hash=ed[0].password;
+         return bcrypt.compare(password, hash);
+    })
+    .then(checkOk=>{
+            
+        if(checkOk)
+        {
+            res.status(200).json({
+                message:array,
+                "name":"yoyo"
+            });
+
+        }
+        else{
+            res.status(400).json({
+                message:"nice darshit i am Not login",
+            })
+        }
+
+    })
+    .catch(err=>{
+        res.status(510).json({
+                message:err.message,
+            })
+        // err.statusCode=500;
+        // console.log("my error",err);
+    });
 	res.end();
 }
 exports.createSignup=(req,res,next)=>{
@@ -16,7 +48,7 @@ exports.createSignup=(req,res,next)=>{
     {
     	console.log("i am ok darshit");
     	let sx=new Signup(email,password,retype);
-    	sx.save()
+    	return sx.save()
     	.then(xs=>{
     		res.status(201).json({
 	        message: 'Post created successfully!',
@@ -28,8 +60,7 @@ exports.createSignup=(req,res,next)=>{
     }
     else{
     	console.log("i am not ok darshit");
-	
-		return res.status(422).json({
+		res.status(422).json({
 			message:"post data not successfully",
 		});
     }
@@ -38,5 +69,41 @@ exports.createSignup=(req,res,next)=>{
 	// 	message:"post created successfully",
 	// 	post:{email:email,password:password,retype:retype}
 	// });
-	res.end();
+	res.send();
 }
+//rest api unexpected error occur
+//aa error apada project na stage ma tyare avi jyare
+//apde return karavanu bhuli jata hata<---
+// ex.error avanu reason
+// Login.Logincheck(email,password)
+//     .then(ed=>{
+//         let hash=ed[0].password;
+//          return bcrypt.compare(password, hash);
+//     })
+//     .then(checkOk=>{
+            
+//         if(checkOk)
+//         {
+//             res.status(200).json({
+//                 "message":"nice darshit i am login",
+//                 "name":"yoyo"
+//             });
+
+//         }
+// ex.solve error
+// return Login.Logincheck(email,password)
+//     .then(ed=>{
+//         let hash=ed[0].password;
+//          return bcrypt.compare(password, hash);
+//     })
+//     .then(checkOk=>{
+            
+//         if(checkOk)
+//         {
+//             res.status(200).json({
+//                 "message":"nice darshit i am login",
+//                 "name":"yoyo"
+//             });
+
+//         }
+
