@@ -69,7 +69,7 @@ const Login=props=> {
     }
   }
   let submit=(ed)=>{
-    fetch('http://localhost:7080/feed/Loginpost',{
+    fetch('https://apicalling.herokuapp.com/feed/Loginpost',{
       method:'POST',
       body:JSON.stringify({
         email:state.email,
