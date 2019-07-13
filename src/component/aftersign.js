@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -7,112 +7,171 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import {style} from 'typestyle';
-import {blue,grey,green} from '@material-ui/core/colors/';
+import { style } from 'typestyle';
+import { blue, grey, green } from '@material-ui/core/colors/';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Login from './login.js';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { createBrowserHistory } from 'history'
-import {FaUserAlt,FaRss,FaEnvelopeOpen,FaThumbsUp,FaBan} from 'react-icons/fa';
+import { FaUserAlt, FaRss, FaEnvelopeOpen, FaThumbsUp, FaBan } from 'react-icons/fa';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-// import { browserHistory } from 'react-router';
-import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, NavLink, Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-const appbar=style({
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import CloseIcon from '@material-ui/icons/Close';
+const appbar = style({
     flexGrow: 1,
 })
-const typo=style({
-	fontFamily:"arial",  
-	fontWeight:200 ,
-	color:grey[50],
+const typo = style({
+    fontFamily: "arial",
+    fontWeight: 200,
+    color: grey[50],
 })
-const mail=style({
-	fontSize:"26px",
+const mail = style({
+    fontSize: "26px",
 })
 const theme = createMuiTheme();
-let Theme = createMuiTheme({shadows:[0]});
+let Theme = createMuiTheme({ shadows: [0] });
 
-const login=style({
-	marginLeft:"1020px",
-	fontWeight:500,
-	color:grey[100],
+const login = style({
+    marginLeft: "1020px",
+    fontWeight: 500,
+    color: grey[100],
 });
-const signup=style({
-	color:grey[100],
+const signup = style({
+    color: grey[100],
 });
-const toolbar=style({
+const toolbar = style({
     backgroundColor: blue[400],
 })
-const posting=style({
-    width:"40%",
-    postion:"absolute",
-    left:"-6%",
+const posting = style({
+    width: "40%",
+    postion: "absolute",
+    left: "-6%",
 })
-const right=style({
-    marginLeft:"90px",
+const right = style({
+    marginLeft: "90px",
 })
-class Next extends React.Component{
-	constructor(props)
-		{
-			super(props);
-			this.state={
-				signin:false,
-				signup:false,
-			};	
-			this.signin=this.signin.bind(this);
-			this.signIn=this.signIn.bind(this);
-			this.signUp=this.signUp.bind(this);
-		}
-	signin(){
-		this.setState({
-			signin:true,
-		})
-	}
-	signIn=()=>{
-		if(this.state.signin)
-		{
-			return <Redirect to='/signin' />
-		}
-		else if(this.state.signup)
-		{
-			return <Redirect to='/signUp' />
-		}
-	}
-	signUp=()=>{
-		this.setState({
-			signup:true,
-		})
-	}
-	render()
-	{
-		return(
-				<div className={appbar}>
+let Next = () => {
+    const [state, setState] = useState({
+        signin: false,
+        signup: false,
+        status: "",
+        Dialog: false,
+    });
+    let signin = () => {
+        setState({ ...state,
+            signin: true,
+        })
+    }
+    let signIn = () => {
+        if (state.signin) {
+            return <Redirect to='/signin' />
+        } else if (state.signup) {
+            return <Redirect to='/signUp' />
+        }
+    }
+    let signUp = () => {
+        setState({ ...state,
+            signup: true,
+        })
+    }
+    let mystatus = (e) => {
+        let text = e.target.value;
+        setState({ ...state,
+            status: text,
+        })
+    }
+    let submitData=()=>{
+      if(state.status.length>12)
+      {
+        setState({...state,
+          Dialog:true,
+        })
+      }
+      else{
+        setState({...state,
+          Dialog:false,
+        })
+      }
+    }
+    let handleClose=()=>{
+        setState({...state,
+          Dialog:false,
+        })
+    }
+    return (
+        <div className={appbar}>
+<Dialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={state.Dialog}
+          maxWidth='sm'
+          fullWidth="true"
+        >
+          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+            New Post
+            <div class="float-right">
+              <IconButton aria-label="Close" onClick={handleClose}>
+                <CloseIcon />
+              </IconButton>
+            </div>
+          </DialogTitle>
+          <DialogContent dividers>
+          <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">My Title</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title for post"/>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">File Upload</label>
+              <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
+            </div>
+            <div class="p-5">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Content</label>
+              <textarea type="textarea" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </textarea>
+            </div>
+          </form>
+
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} variant="contained" color="primary">
+              Accept
+            </Button>
+          </DialogActions>
+        </Dialog>
+
 <Grid container>
       <Grid item xs={12} md={12} sm={12}>
 <MuiThemeProvider theme={Theme}>
 
-					<AppBar>
-					
-
+    <AppBar>
         <Toolbar className={toolbar}>
-        <Button color="inherit" onClick={this.signin} variant="outlined" exact to="/signUp">
+        <Button color="inherit" onClick={signin} variant="outlined" exact to="/signUp">
         <FaEnvelopeOpen className={mail}/>&nbsp;&nbsp;Message</Button>
  <Grid container container
   direction="row"
   justify="flex-end"
   alignItems="flex-end"> 
-        <Button color="inherit"  onClick={this.signUp}><FaRss/>&nbsp;&nbsp;Feed</Button>
+        <Button color="inherit"  onClick={signUp}><FaRss/>&nbsp;&nbsp;Feed</Button>
      
-        <Button color="inherit"  onClick={this.signUp}><FaUserAlt/>&nbsp;&nbsp;Logout</Button>
+        <Button color="inherit"  onClick={signUp}><FaUserAlt/>&nbsp;&nbsp;Logout</Button>
 </Grid>
         </Toolbar>
 
@@ -126,13 +185,11 @@ class Next extends React.Component{
 </Grid>
 <center>
 <div class="col-md-6">
-<form>
-	<div class="form-group shadow-sm p-3 mb-5 bg-white rounded">
-    <input type="email" style={{height:60}}class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Status"/>
-	</div>
-	<button class="btn btn-primary float-left" type="submit"><FaThumbsUp/>&nbsp;&nbsp;submit</button>
-	<button class="btn btn-danger float-right" type="reset"><FaBan/>&nbsp;&nbsp;cancel</button>
-</form>
+  <div class="form-group shadow-sm p-3 mb-5 bg-white rounded">
+    <input type="text" value={state.mystatus} onChange={mystatus} style={{height:60}} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Status"/>
+  </div>
+  <button class="btn btn-primary float-left" type="submit" onClick={submitData}><FaThumbsUp/>&nbsp;&nbsp;submit</button>
+  <button class="btn btn-danger float-right" type="reset"><FaBan/>&nbsp;&nbsp;cancel</button>
 </div>
 <br/>
 <br/>
@@ -148,7 +205,7 @@ class Next extends React.Component{
 <div class="col-sm-11 col-md-8">
 
 <center>
-	<Card >
+  <Card >
 <Box textAlign="left">
 
       <CardContent>
@@ -167,113 +224,16 @@ class Next extends React.Component{
     </Card>
     <br/>
 
-<Card >
-<Box textAlign="left">
 
-      <CardContent>
-        <Typography  color="textSecondary" gutterBottom>
-          Post
-        </Typography>
-        <Typography variant="h5" component="h2">
-          kem che badha?
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button variant="outlined" color="primary"  size="small">Edit</Button>
-        <Button variant="outlined" color="secondary" size="small">Delete</Button>
-      </CardActions>
-</Box>
-    </Card>
-    <br/>
-
-    <Card >
-<Box textAlign="left">
-
-      <CardContent>
-        <Typography  color="textSecondary" gutterBottom>
-          Post
-        </Typography>
-        <Typography variant="h5" component="h2">
-          kem che badha?
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button variant="outlined" color="primary"  size="small">Edit</Button>
-        <Button variant="outlined" color="secondary" size="small">Delete</Button>
-      </CardActions>
-</Box>
-    </Card>
-    <br/>
-
-    <Card >
-<Box textAlign="left">
-
-      <CardContent>
-        <Typography  color="textSecondary" gutterBottom>
-          Post
-        </Typography>
-        <Typography variant="h5" component="h2">
-          kem che badha?
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button variant="outlined" color="primary"  size="small">Edit</Button>
-        <Button variant="outlined" color="secondary" size="small">Delete</Button>
-      </CardActions>
-</Box>
-    </Card>
-    <br/>
-    
-    <Card >
-<Box textAlign="left">
-
-      <CardContent>
-        <Typography  color="textSecondary" gutterBottom>
-          Post
-        </Typography>
-        <Typography variant="h5" component="h2">
-          kem che badha?
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button variant="outlined" color="primary"  size="small">Edit</Button>
-        <Button variant="outlined" color="secondary" size="small">Delete</Button>
-      </CardActions>
-</Box>
-    </Card>
-    <br/>
-
-    <Card >
-<Box textAlign="left">
-
-      <CardContent>
-        <Typography  color="textSecondary" gutterBottom>
-          Post
-        </Typography>
-        <Typography variant="h5" component="h2">
-          kem che badha?
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button variant="outlined" color="primary"  size="small">Edit</Button>
-        <Button variant="outlined" color="secondary" size="small">Delete</Button>
-      </CardActions>
-</Box>
-    </Card>
 </center>
 </div>
 
 <div class="col-sm-1 col-md-2">
 </div>
-
-
-
-
 </div>
 </center>
 
       </div>
-			);
-	}
+    );
 }
 export default Next;
