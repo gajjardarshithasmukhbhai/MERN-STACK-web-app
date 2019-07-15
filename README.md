@@ -57,7 +57,7 @@ npm install
 | 🥇 |
 | :---:     | 
 | [**Node / Express**<br/> ![Node / Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app)
-| [**MVC architecture**<br/> ![Laravel](https://github.com/gothinkster/laravel-realworld-example-app/blob/master/logo.png) ![Star](
+
 ### web app images
   <img src="./p1.PNG" alt="MERN stack" align="left" width="250">
   <img src="./p2.PNG" alt="MERN stack" align="right" width="250"><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
