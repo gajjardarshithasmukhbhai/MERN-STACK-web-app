@@ -33,14 +33,12 @@ npm install
 -->
 > _Sorted by popularity on Wed Jun 26 2019_
 
-| 🥇 | 🥈 | 🥉 |
-| :---:         |     :---:      |          :---: |
-| [**React**<br/> ![React / Redux](https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/react-redux-realworld-example-app)| [**Font awesome**<br/> ![Angular](https://raw.githubusercontent.com/gothinkster/angular2-realworld-example-app/master/logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angular-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angular-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angular-realworld-example-app)
-| [**Bootstrap4**<br/> ![AngularJS](https://raw.githubusercontent.com/gothinkster/angularjs-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angularjs-realworld-example-app)(https://img.shields.io/github/forks/jacekschae/conduit.svg?style=social&label=Fork)](https://github.com/jacekschae/conduit)
+| 🥇 | 🥈 |
+| :---:         |     :---:      | 
+| [**React**<br/> ![React / Redux](https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star)| [**Font awesome**<br/> ![Angulars](https://camo.githubusercontent.com/ea918e1b9b63970c16e946fc131bf36be3cff754/68747470733a2f2f696d672e666f7274617765736f6d652e636f6d2f33343963666466362f6c6f676f2d66612d667265652e737667)
+| [**Bootstrap4**<br/> ![AngularJS](https://avatars1.githubusercontent.com/u/2918581?s=200&v=4) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/angularjs-realworld-example-app)
 
-Work In Progress:
-**[Implement Rest APi + Apollo/Relay for the Node + React codebases](https://github.com/gothinkster/realworld/issues/6) | 
-[React + NextJS](https://github.com/gothinkster/realworld/issues/336)**
+
 
 # Backends
 <!--
@@ -56,8 +54,8 @@ Work In Progress:
      -->
 > _Sorted by popularity on Wed Jun 26 2019_
 
-| 🥇 | 🥈 | 🥉 |
-| :---:         |     :---:      |          :---: |
+| 🥇 |
+| :---:     | 
 | [**Node / Express**<br/> ![Node / Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app)
 | [**MVC architecture**<br/> ![Laravel](https://github.com/gothinkster/laravel-realworld-example-app/blob/master/logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/laravel-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/laravel-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/laravel-realworld-example-app)|
 | [**bcrypt js**<br/> ![Flask](https://raw.githubusercontent.com/gothinkster/flask-realworld-example-app/master/image.png) ![Star](https://img.shields.io/github/stars/gothinkster/flask-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/flask-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/flask-realworld-example-app)
