@@ -24,9 +24,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+const Teme = createMuiTheme({ palette: {primary:{main:blue[400]}} });
+/*cookie*/
 const theme = createMuiTheme();
 const blueTheme = createMuiTheme({ palette: {main: blue[100]} })
-const buttonTheme = createMuiTheme({ palette: { main:green }})
+const buttonTheme = createMuiTheme({ palette: { background:green }})
 const margin=style ({
     marginLeft: theme.spacing.unit,
     width:"80%",
@@ -38,13 +42,27 @@ const button=style ({
 
 
 const Login=props=> {
-
+useEffect(()=>{
+let cookieStatus=cookies.get('Token')
+if(cookieStatus!=undefined)
+{
+  setState({...state,
+    cookie:true,
+  })
+}
+else{
+    setState({...state,
+    cookie:false,
+  })
+}
+},[])
   const [state,setState]=useState({
     email:"",
     password:null,
     open:false,
     err:"",
     aftersign:false,
+    cookie:false,
   })
   // const [email,setEmail]=useState["darshit"];
   const closedialog=()=>{
@@ -52,80 +70,28 @@ const Login=props=> {
         open:false,
       })
     }
-  const email=(k)=>{
-    setState({...state,
-      email:k.target.value,
-    })
-  }
-  const Password=(k)=>{
-    setState({...state,
-      password:k.target.value,
-    })
-  }
-  let aftersign=()=>{
-    if(state.aftersign)
-    {
-      return <Redirect to="/aftersign"/>
-    }
-  }
-  let submit=(ed)=>{
-    fetch('http://localhost:7080/feed/Loginpost',{
-      method:'POST',
-      body:JSON.stringify({
-        email:state.email,
-        password:state.password,
-      }),
-      headers:{
-        'Content-Type':'application/json',
-      }
-    })
-    .then(res=>{
-    if(res.status===400)
-    {
-      console.log("i have problem");
-      throw new Error(
-            "Validation failed.your password is wrong"
-      );
-    }
-    else if(res.status===500)
-    {
-      throw new Error(
-            "Internet error check your internet connection"
-          );
-    }
-    else if(res.status===510)
-    {
-      throw new Error(
-            "you have no account in our database"
-          );
-    }
-    setState({...state,
-      email:"",
-      password:"",
-      retype:"",
-      aftersign:true,
-    })
-    return res.json();
-  })
-  .then(resData=>{
-     console.log(resData);
-      setState({
-          aftersign:true,
-      })
-    })
-  .catch(err=>{
-    console.log("react",err.message);
-    let error=err.message;
-    setState({...state,
-        open:true,
-        err:error
-      })
-  });
-    
-  }
-  return (
-  		<div class="container">
-      <Dialog
+    const full_page=()=>{
+      if(state.cookie)
+      {
+        fetch('https://apicalling.herokuapp.com/feed/Token',{
+          method:'POST',
+          body:JSON.stringify({
+              Token:cookies.get('Token'),
+          }),
+          headers:{
+            'Content-Type':'application/json',
+          }
+        }).then(data=>{
+          console.log("mission successfull");
+        })
+        .catch(err=>{
+          console.log();
+        });
+         return <Redirect to="/aftersign"/>
+      }   
+      else{
+        return (<div>
+          <Dialog
         open={state.open}
         aria-labelledby="draggable-dialog-title"
       >
@@ -137,25 +103,28 @@ const Login=props=> {
             {state.err}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button  color="primary" onClick={closedialog}>
+        <DialogActions>  
+<MuiThemeProvider theme={Teme}>
+
+          <Button variant="contained" color="primary" onClick={closedialog}>
             Ok
           </Button>
+</MuiThemeProvider>
         </DialogActions>
       </Dialog>
 <Grid container>
-      <Grid item xs={12} md={12} sm={12} xs={12}>
+      <Grid item xs={12} md={12} sm={12} >
 
-				<center>
+        <center>
 
-					<div class="col-sm-12">
-						
+          <div className="col-sm-12">
+            
 <Box boxShadow={2}>
-							<Card color="primary">
-							 <CardContent>
+              <Card color="primary">
+               <CardContent>
 <MuiThemeProvider theme={blueTheme}>
 <Box color="primary.main">
-								<Typography variant="h5" component="h2"  gutterBottom>
+                <Typography variant="h5" component="h2"  gutterBottom>
           Login in PandaChat
         </Typography>
 </Box>
@@ -194,37 +163,118 @@ const Login=props=> {
         left="13%"
         zIndex="modal" height="65%">
         <Button variant="contained" color="primary" size='medium' onClick={submit}>
-        	submit
+          submit
         </Button>
         &nbsp;
         <Button variant="contained" color="secondary" >
-        	cancel
+          cancel
         </Button>
 </Box>
 
         </form>
         <Box fontWeight={500} textAlign="center"  fontSize={16}>
-					<Typography >
-						i am gajjar darshit i make the Mern stack<br/> complete web app in this web app i use<br/>React ,node js,mongodb,encryption security and i design scalable API<br/> 
-					</Typography>
-				</Box>
+          <Typography >
+            i am gajjar darshit i make the Mern stack<br/> complete web app in this web app i use<br/>React ,node js,mongodb,encryption security and i design scalable API<br/> 
+          </Typography>
+        </Box>
         </CardContent>
-							</Card>							
+              </Card>             
 
 </Box>
 
-										
-					</div>
+                    
+          </div>
 
-				</center>
+        </center>
 
-				</Grid>
+        </Grid>
 </Grid>
         {aftersign()}
 
-				</div>
 
-  	)
+        </div>)
+      }
+    }
+  const email=(k)=>{
+    setState({...state,
+      email:k.target.value,
+    })
+  }
+  const Password=(k)=>{
+    setState({...state,
+      password:k.target.value,
+    })
+  }
+  let aftersign=()=>{
+    if(state.aftersign)
+    {
+      return <Redirect to="/aftersign"/>
+    }
+  }
+  let submit=(ed)=>{
+    fetch('https://apicalling.herokuapp.com/feed/Loginpost',{
+      method:'POST',
+      body:JSON.stringify({
+        email:state.email,
+        password:state.password,
+      }),
+      headers:{
+        'Content-Type':'application/json',
+      }
+    })
+    .then(res=>{
+    if(res.status===400)
+    {
+      console.log("i have problem");
+      throw new Error(
+            "Validation failed.your password is wrong"
+      );
+    }
+    else if(res.status===500)
+    {
+      throw new Error(
+            "Internet error check your internet connection"
+          );
+    }
+    else if(res.status===510)
+    {
+      throw new Error(
+            "you have no account in our database"
+          );
+    }
+    setState({...state,
+      email:"",
+      password:"",
+      retype:"",
+      aftersign:true,
+    })
+    return res.json();
+  })
+  .then(resData=>{
+    cookies.set('Token',resData.token, { path: '/' });
+     console.log(resData.token);
+      setState({...state,
+          aftersign:true,
+      })
+    })
+  .catch(err=>{
+    console.log("react",err.message);
+    let error=err.message;
+    setState({...state,
+        open:true,
+        err:error
+      })
+  });
+    
+  }
+  return (
+      <div className="container">
+      {full_page()}
+      
+
+        </div>
+
+    )
 
 }
 

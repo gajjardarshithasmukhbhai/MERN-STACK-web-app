@@ -89,7 +89,7 @@ let SignupCard=()=> {
     }
   }
   let submitData=()=>{
-    fetch('http://localhost:7080/feed/signupost',{
+    fetch('https://apicalling.herokuapp.com/feed/signupost',{
     method:'POST',
     body:JSON.stringify({
       email:state.email,
@@ -140,7 +140,7 @@ let SignupCard=()=> {
   });
   }
   return (
-  		<div class="container">
+      <div class="container">
 
             <Dialog
         open={state.open}
@@ -165,16 +165,16 @@ let SignupCard=()=> {
 <Grid container>
       <Grid item xs={12} md={12} sm={12} xs={12}>
 
-				<center>
+        <center>
 
-					<div class="col-sm-12">
-						
+          <div class="col-sm-12">
+            
 <Box boxShadow={2}>
-							<Card color="primary">
-							 <CardContent>
+              <Card color="primary">
+               <CardContent>
 <MuiThemeProvider theme={blueTheme}>
 <Box color="primary.main">
-								<Typography variant="h5" component="h2"  gutterBottom>
+                <Typography variant="h5" component="h2"  gutterBottom>
           SignUp in PandaChat
         </Typography>
 </Box>
@@ -227,11 +227,11 @@ let SignupCard=()=> {
         left="13%"
         zIndex="modal" height="65%">
         <Button variant="contained" color="primary" size='medium' onClick={submitData}>
-        	submit
+          submit
         </Button>
         &nbsp;
         <Button variant="contained" color="secondary" >
-        	cancel
+          cancel
         </Button>
 </Box>
 <br/>
@@ -255,22 +255,22 @@ let SignupCard=()=> {
 <br/>
         </form>
         </CardContent>
-							</Card>							
+              </Card>             
 
 </Box>
 
-										
-					</div>
+                    
+          </div>
 
-				</center>
+        </center>
 
-				</Grid>
+        </Grid>
 </Grid>
         {aftersign()}
 
-				</div>
+        </div>
 
-  	)
+    )
 
 }
 
