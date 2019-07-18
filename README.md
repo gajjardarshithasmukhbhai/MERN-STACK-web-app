@@ -23,6 +23,40 @@ Install the npm module in your app directory.
 ```sh
 npm install
 ```
+# Frontends
+<!--
+  TECHNOLOGY:
+     1: React 
+     2: React material Ui
+     3: Bootstrap4
+     4: font-awesome
+-->
+> _below technology mention_
+
+| 🥇 | 🥈 |
+| :---: |     :---------:      | 
+| [**React**<br/> ![React / Redux](https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star)| [**Font awesome**<br/> ![Angulars](https://camo.githubusercontent.com/ea918e1b9b63970c16e946fc131bf36be3cff754/68747470733a2f2f696d672e666f7274617765736f6d652e636f6d2f33343963666466362f6c6f676f2d66612d667265652e737667)
+| [**Bootstrap4**<br/> ![AngularJS](https://avatars1.githubusercontent.com/u/2918581?s=200&v=4) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star)
+
+
+
+# Backends
+<!--
+  TEchnology:
+     1: Node / Express
+     2: MVC architecture
+     3: bcrypt JS
+     4: jsonwebtoken
+     5: mongodb
+     6: passport
+     7: passport-google-oauth20
+     8: REST API
+     -->
+> _below technology mention_
+
+| 🥇 |
+| :---:     | 
+| [**Node / Express**<br/> ![Node / Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app)
 
 ### web app images
   <img src="./p1.PNG" alt="MERN stack" align="left" width="250">
