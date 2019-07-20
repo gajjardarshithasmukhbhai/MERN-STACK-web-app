@@ -10,7 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { style } from 'typestyle';
 import { blue, grey, green ,cyan} from '@material-ui/core/colors/';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider} from '@material-ui/styles';
 import Login from './login.js';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -69,6 +69,17 @@ const right = style({
     marginLeft: "90px",
 })
 let Next = () => {
+  const [state, setState] = useState({
+        signin: false,
+        signup: false,
+        status: "",
+        Dialog: false,
+        cookie:false,
+        open:false,
+        redirect:false,
+        url:"",
+        content:"",
+    });
   useEffect(()=>{
     fetch("https://apicalling.herokuapp.com/feed/Token",{
       method:'POST',
@@ -109,15 +120,7 @@ let Next = () => {
   }
 
   },[]);
-    const [state, setState] = useState({
-        signin: false,
-        signup: false,
-        status: "",
-        Dialog: false,
-        cookie:false,
-        open:false,
-        redirect:false,
-    });
+    
     let signin = () => {
         setState({ ...state,
             signin: true,
@@ -129,15 +132,27 @@ let Next = () => {
         redirect:true,
       })
     }
+    let image= (event) =>{
+      setState({...state,
+        url:URL.createObjectURL(event.target.files[0]),
+      })
+    }
     let call = ()=>{
       if(state.redirect){
         return <Redirect to="/"/>
       }
     }
+    let textarea= (event) =>{
+      let content=event.target.value;
+      setState({...state,
+        content:content,
+      })
+    }
     let page_load = ()=> {
       if(state.cookie)
       {
         return (<div>
+          
                     <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -158,13 +173,14 @@ let Next = () => {
                   
                   <div class="form-group">
                     <label for="exampleInputPassword1">File Upload</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1"/>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={image}/>
                   </div>
                   <div class="p-5">
+                  <img src={state.url} class="img-thumbnail border border-primary"/>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Content</label>
-                    <textarea type="textarea" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter DAta">
+                    <textarea type="textarea" value={state.content} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter DAta" onChange={textarea}>
                     </textarea>
                   </div>
                 </form>
@@ -298,7 +314,6 @@ let Next = () => {
     }
     let mystatus = (e) => {
         let text = e.target.value;
-        console.log(text);
         setState({ ...state,
             status: text,
         })
@@ -317,9 +332,27 @@ let Next = () => {
       }
     }
     let handleClose=()=>{
-        setState({...state,
+let formData=new FormData();
+let Token=cookies.get('Token');
+formData.append('post',state.status);
+formData.append('image',state.url);
+formData.append('content',state.content);
+formData.append('Token',Token);
+console.log("hello->",formData.get('Token'));
+fetch('https://apicalling.herokuapp.com/feed/post',{
+      method:'POST',
+      body:formData
+    }).then(res=>{
+
+          setState({...state,
           Dialog:false,
         })
+    }).catch(err=>{
+          console.log(err);
+        });
+
+    
+        
     }
     return (
         <div className={appbar}>
