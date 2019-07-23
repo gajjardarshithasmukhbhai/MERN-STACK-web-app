@@ -43,7 +43,7 @@ const button=style ({
 
 const Login=props=> {
 useEffect(()=>{
-let cookieStatus=localStorage.getItem('Token');
+let cookieStatus=localStorage.getItem('Token')
 if(cookieStatus!=undefined)
 {
   setState({...state,
@@ -76,7 +76,7 @@ else{
         fetch('https://apicalling.herokuapp.com/feed/Token',{
           method:'POST',
           body:JSON.stringify({
-              Token:localStorage.getItem('Token');,
+              Token:localStorage.getItem('Token'),
           }),
           headers:{
             'Content-Type':'application/json',
@@ -113,7 +113,7 @@ else{
         </DialogActions>
       </Dialog>
 <Grid container>
-      <Grid item xs={12} md={12} sm={12} >
+      <Grid item xs={12} md={12} sm={12}>
 
         <center>
 

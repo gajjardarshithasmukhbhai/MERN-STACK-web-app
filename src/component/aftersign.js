@@ -84,7 +84,7 @@ let Next = () => {
     fetch("https://apicalling.herokuapp.com/feed/Token",{
       method:'POST',
       body:JSON.stringify({
-          Token:localStorage.getItem('Token');,
+          Token:localStorage.getItem('Token'),
       }),
       headers:{
         'Content-Type':'application/json',
@@ -93,7 +93,7 @@ let Next = () => {
     .then(res=>{
           if(res.status===520)
           {
-            localStorage.removeItem('Token');
+            cookies.remove("Token");
             setState({...state,
               redirect:true,
             })
@@ -338,7 +338,6 @@ formData.append('post',state.status);
 formData.append('image',state.url);
 formData.append('content',state.content);
 formData.append('Token',Token);
-console.log("hello->",formData.get('Token'));
 fetch('https://apicalling.herokuapp.com/feed/post',{
       method:'POST',
       body:formData
