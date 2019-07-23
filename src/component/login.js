@@ -43,7 +43,7 @@ const button=style ({
 
 const Login=props=> {
 useEffect(()=>{
-let cookieStatus=cookies.get('Token')
+let cookieStatus=localStorage.getItem('Token');
 if(cookieStatus!=undefined)
 {
   setState({...state,
@@ -76,7 +76,7 @@ else{
         fetch('https://apicalling.herokuapp.com/feed/Token',{
           method:'POST',
           body:JSON.stringify({
-              Token:cookies.get('Token'),
+              Token:localStorage.getItem('Token');,
           }),
           headers:{
             'Content-Type':'application/json',
@@ -251,7 +251,9 @@ else{
     return res.json();
   })
   .then(resData=>{
-    cookies.set('Token',resData.token, { path: '/' });
+    localStorage.setItem('Token',resData.token);
+
+    // cookies.set('Token',resData.token, { path: '/' });
      console.log(resData.token);
       setState({...state,
           aftersign:true,
