@@ -93,7 +93,7 @@ let Next = () => {
     .then(res=>{
           if(res.status===520)
           {
-            cookies.remove("Token");
+            localStorage.removeItem("Token");
             setState({...state,
               redirect:true,
             })
