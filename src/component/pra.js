@@ -32,11 +32,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
-import CardMedia from '@material-ui/core/CardMedia';
-import {FaJediOrder} from 'react-icons/fa';
+import Cookies from 'universal-cookie';
 
-let axios = require('axios');
-
+const cookies = new Cookies();
 const appbar = style({
     flexGrow: 1,
 })
@@ -81,14 +79,12 @@ let Next = () => {
         redirect:false,
         url:"",
         content:"",
-        ImageData:"",
-        Apidata:[],
     });
   useEffect(()=>{
     fetch("https://apicalling.herokuapp.com/feed/Token",{
       method:'POST',
       body:JSON.stringify({
-          Token:localStorage.getItem('Token'),
+          Token:cookies.get('Token'),
       }),
       headers:{
         'Content-Type':'application/json',
@@ -97,7 +93,7 @@ let Next = () => {
     .then(res=>{
           if(res.status===520)
           {
-            localStorage.removeItem("Token");
+            cookies.remove("Token");
             setState({...state,
               redirect:true,
             })
@@ -108,7 +104,7 @@ let Next = () => {
       console.log("mission unsuccessful");
     });
  
-  let cookieStatus=localStorage.getItem('Token');
+  let cookieStatus=cookies.get('Token');
   if(cookieStatus!=undefined)
   {
     setState({...state,
@@ -122,33 +118,9 @@ let Next = () => {
       open:true,
     })
   }
-    der();
-  },[]);
-let der =()=>{
-    let sk=fetch("https://apicalling.herokuapp.com/feed/get_post",{
-      method:'POST',
-      body:JSON.stringify({
-          Token:localStorage.getItem('Token'),
-      }),
-      headers:{
-        'Content-Type':'application/json',
-      }
-    })
-    .then(res=>{
-      return res.json();
-    })
-    .then(data=>{
-      console.log(data.message);
-      setState({...state,
-        Apidata:data.message,
-        cookie:true,
-      })
-    })
 
-    .catch(err=>{
-      console.log("mission not unsuccessful");
-    });  
-}
+  },[]);
+    
     let signin = () => {
         setState({ ...state,
             signin: true,
@@ -161,16 +133,8 @@ let der =()=>{
       })
     }
     let image= (event) =>{
-      //problem ahiya hato hu always be
-      // let path=event.target.value; karto to
-      //je na ave be remember
-      let path=event.target.files[0];
-      // console.log("....>",path);  
-      // setState({...state,
-      // })
       setState({...state,
         url:URL.createObjectURL(event.target.files[0]),
-        ImageData:path,  
       })
     }
     let call = ()=>{
@@ -188,8 +152,7 @@ let der =()=>{
       if(state.cookie)
       {
         return (<div>
-      
-
+          
                     <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -199,22 +162,21 @@ let der =()=>{
               >
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                   New Post
-                  <div className="float-right">
+                  <div class="float-right">
                     <IconButton aria-label="Close" onClick={handleClose}>
                       <CloseIcon />
                     </IconButton>
                   </div>
                 </DialogTitle>
                 <DialogContent dividers>
-                <form  method="post" enctype="multipart/formdata">
-                  <form method="post" enctype="multipart/formdata">
-                    <div className="form-group">
-                      <label for="exampleInputPassword1">File Upload</label>
-                      <input type="file" name="Legend" className="form-control-file" id="Legend" onChange={image}/>
-                    </div>
-                  </form>
-                  <div className="p-5">
-                  <img src={state.url} className="img-thumbnail border border-primary"/>
+                <form  method="post" enctype="multipart/form-data">
+                  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">File Upload</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" accept="image/*" onChange={image}/>
+                  </div>
+                  <div class="p-5">
+                  <img src={state.url} class="img-thumbnail border border-primary"/>
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Content</label>
@@ -258,7 +220,7 @@ let der =()=>{
       </Grid>
       </Grid>
       <center>
-      <div class="col-md-6 " data-spy="affix">
+      <div class="col-md-6">
         <div class="form-group shadow-sm p-3 mb-5 bg-white rounded">
           <input type="text" value={state.mystatus} onChange={mystatus} style={{height:60}} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your posts"/>
         </div>
@@ -275,42 +237,27 @@ let der =()=>{
 
       <div class="col-sm-1 col-md-2">
       </div>
+
       <div class="col-sm-11 col-md-8">
 
       <center>
-{
-  
-  state.Apidata.map(ed=>
-    
-    <div>
-<Card >
+        <Card >
       <Box textAlign="left">
-            <CardContent>
 
-            <img class="card-img-top" src={`https://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap"/>
-              <br/>
-              <br/>
+            <CardContent>
+              <Typography  color="textSecondary" gutterBottom>
+                Post
+              </Typography>
               <Typography variant="h5" component="h2">
-                {ed.title}
+                kem che badha?
               </Typography>
             </CardContent>
-            <div class="card-body">
-    <p class="card-text">{ed.content}</p>
-  </div>
             <CardActions>
-              <Button variant="outlined" color="primary"  size="small" value={ed.ID}>Edit</Button>
-              <Button variant="outlined" color="secondary" size="small" value={ed.ID}>Delete</Button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-              <FaJediOrder style={{color:"#D509F3"}}/>
-              
+              <Button variant="outlined" color="primary"  size="small">Edit</Button>
+              <Button variant="outlined" color="secondary" size="small">Delete</Button>
             </CardActions>
-</Box>
+      </Box>
           </Card>
-       <br/>
-          </div>
-        )
-}
-        
           <br/>
 
 
@@ -325,7 +272,33 @@ let der =()=>{
 
         </div>);
       }
-      
+      else{
+        return (
+          <MuiThemeProvider theme={TOggle}>
+          <Dialog
+          // onClose={this.handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={state.open}
+        >
+        <DialogTitle id="customized-dialog-title" >
+            sorry sir
+          </DialogTitle>
+          <DialogContent dividers>
+            <Typography gutterBottom>
+              Mr.Darshit Gajjar Not allow Directly to one route to another
+            </Typography>
+            
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={returns} variant="outlined" color="primary">
+              return
+            </Button>
+          </DialogActions>
+
+        </Dialog>
+          </MuiThemeProvider>
+        )
+      }
     }
     let signIn = () => {
         if (state.signin) {
@@ -360,24 +333,24 @@ let der =()=>{
     }
     let handleClose=()=>{
 let formData=new FormData();
-let Token=localStorage.getItem('Token');
+let Token=cookies.get('Token');
 formData.append('post',state.status);
-formData.append('image',state.ImageData);
+formData.append('image',state.url);
 formData.append('content',state.content);
 formData.append('Token',Token);
+console.log("hello->",formData.get('Token'));
 fetch('https://apicalling.herokuapp.com/feed/post',{
       method:'POST',
-      body:formData,
-      
+      body:formData
     }).then(res=>{
-  }).catch(err=>{
-          console.log(err);
-        });
 
           setState({...state,
           Dialog:false,
         })
-  
+    }).catch(err=>{
+          console.log(err);
+        });
+
     
         
     }
