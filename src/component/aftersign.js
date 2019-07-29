@@ -383,16 +383,16 @@ fetch('https://apicalling.herokuapp.com/feed/post',{
       body:formData,
       
     }).then(res=>{
-          setState({...state,
-          Dialog:false,
-        })
+
   }).catch(err=>{
           console.log(err);
         });
 
-      
-  
-    
+    setTimeout(()=>{
+      setState({...state,
+          Dialog:false,
+        })
+    },400);
         
     }
     return (
