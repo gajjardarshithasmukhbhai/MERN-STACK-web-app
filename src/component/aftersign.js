@@ -392,7 +392,7 @@ fetch('https://apicalling.herokuapp.com/feed/post',{
       setState({...state,
           Dialog:false,
         })
-    },400);
+    },800);
         
     }
     return (
