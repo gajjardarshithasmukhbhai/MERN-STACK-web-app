@@ -15,7 +15,7 @@ import Login from './login.js';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { createBrowserHistory } from 'history'
-import { FaUserAlt, FaRss, FaEnvelopeOpen, FaThumbsUp, FaBan } from 'react-icons/fa';
+import { FaUserAlt, FaRss, FaEnvelopeOpen, FaThumbsUp, FaBan,FaDelicious } from 'react-icons/fa';
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -34,9 +34,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import CloseIcon from '@material-ui/icons/Close';
 import CardMedia from '@material-ui/core/CardMedia';
 import {FaJediOrder} from 'react-icons/fa';
-
-let axios = require('axios');
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 const appbar = style({
     flexGrow: 1,
 })
@@ -146,8 +144,51 @@ let der =()=>{
     })
 
     .catch(err=>{
-      console.log("mission not unsuccessful");
+      console.log("mission unsuccessful");
     });  
+}
+    let Apidata = ()=>{
+      console.log("{{{",state.Apidata);
+      if(state.Apidata!=undefined){
+          return (<div>
+        {
+
+  state.Apidata.map(ed=>
+    <div>
+
+<Card >
+      <Box textAlign="left">
+            <CardContent>
+            <img class="card-img-top" src={`https://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap"/>
+              <br/>
+              <br/>
+              <Typography variant="h5" component="h2">
+                {ed.title}
+              </Typography>
+            </CardContent>
+            <div class="card-body">
+    <p class="card-text">{ed.content}</p>
+  </div>
+            <CardActions>
+              <Button variant="outlined" color="primary"  size="small" value={ed.ID}>Edit</Button>
+              <Button variant="outlined" color="secondary" size="small" value={ed.ID}>Delete</Button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              <FaDelicious style={{color:"#D509F3"}}/>
+              
+            </CardActions>
+</Box>
+          </Card>
+       <br/>
+          </div>
+        )
+}
+      </div>)
+      }
+      else{
+        return (<div>
+            <CircularProgress color="secondary"/>
+        </div>)
+      }
 }
     let signin = () => {
         setState({ ...state,
@@ -184,6 +225,7 @@ let der =()=>{
         content:content,
       })
     }
+
     let page_load = ()=> {
       if(state.cookie)
       {
@@ -205,6 +247,7 @@ let der =()=>{
                     </IconButton>
                   </div>
                 </DialogTitle>
+                
                 <DialogContent dividers>
                 <form  method="post" enctype="multipart/formdata">
                   <form method="post" enctype="multipart/formdata">
@@ -278,38 +321,8 @@ let der =()=>{
       <div class="col-sm-11 col-md-8">
 
       <center>
-{
-  
-  state.Apidata.map(ed=>
-    
-    <div>
-<Card >
-      <Box textAlign="left">
-            <CardContent>
+      {Apidata()}
 
-            <img class="card-img-top" src={`https://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap"/>
-              <br/>
-              <br/>
-              <Typography variant="h5" component="h2">
-                {ed.title}
-              </Typography>
-            </CardContent>
-            <div class="card-body">
-    <p class="card-text">{ed.content}</p>
-  </div>
-            <CardActions>
-              <Button variant="outlined" color="primary"  size="small" value={ed.ID}>Edit</Button>
-              <Button variant="outlined" color="secondary" size="small" value={ed.ID}>Delete</Button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-              <FaJediOrder style={{color:"#D509F3"}}/>
-              
-            </CardActions>
-</Box>
-          </Card>
-       <br/>
-          </div>
-        )
-}
         
           <br/>
 
