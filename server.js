@@ -8,7 +8,7 @@ if(process.env.NODE_ENV==='production')
 		res.sendFile(path.join(__dirname + '/build/index.html'));
 	});
 }
-//hello gajjar darshit i am productin ready web app
+//hello gajjar  darshit kem cho i am productin ready web app
 const port=process.env.PORT || 3002;
 app.listen(port,()=>{
 	console.log("port",port);
