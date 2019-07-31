@@ -81,6 +81,7 @@ let Next = () => {
         content:"",
         ImageData:"",
         Apidata:[],
+        tk:false,
     });
   useEffect(()=>{
     fetch("https://apicalling.herokuapp.com/feed/Token",{
@@ -120,10 +121,67 @@ let Next = () => {
       open:true,
     })
   }
-    der();
-  },[]);
-let der =()=>{
+  console.log("---------");
+    // der();
+  },[state.Dialog]);
+  let deletedata=(event)=>{
+   
+    fetch("https://apicalling.herokuapp.com/feed/delete",{
+      method:'POST',
+      body:JSON.stringify({
+          Token:localStorage.getItem('Token'),
+          deleteToken:event,
+      }),
+      headers:{
+        'Content-Type':'application/json',
+      }
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log("i am call delete");
+ 
+    })
+    .catch(err=>{
+      console.log("mission unsuccessful");
+    });
+      setState({
+        tk:true,
+        status:"darshit hello",
+      })  
+  }
+  useEffect(()=>{
+    console.log("::::::::::::::::");
     let sk=fetch("https://apicalling.herokuapp.com/feed/get_post",{
+      method:'POST',
+      body:JSON.stringify({
+          Token:localStorage.getItem('Token'),
+      }),
+      headers:{
+        'Content-Type':'application/json',
+      }
+    })
+    .then(res=>{
+      api_call();
+      return res.json();
+
+    })
+    .then(data=>{
+      console.log(data.message);
+      setState({...state,
+        Apidata:data.message,
+        cookie:true,
+      })
+    })
+
+    .catch(err=>{
+      console.log("mission unsuccessful");
+    });
+  },[state.Dialog,state.tk]);
+//when acknowledgement occur so that time function start up
+  let api_call=()=>{
+
+    setTimeout(()=>{
+       let sk=fetch("https://apicalling.herokuapp.com/feed/get_post",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -145,8 +203,10 @@ let der =()=>{
 
     .catch(err=>{
       console.log("mission unsuccessful");
-    });  
-}
+    });
+    },20);
+
+  }
     let Apidata = ()=>{
       console.log("{{{",state.Apidata);
       if(state.Apidata!=undefined){
@@ -170,10 +230,13 @@ let der =()=>{
     <p class="card-text">{ed.content}</p>
   </div>
             <CardActions>
+ <form>
+ <input type="hidden" id="dataa" value={ed.ID}/>
               <Button variant="outlined" color="primary"  size="small" value={ed.ID}>Edit</Button>
-              <Button variant="outlined" color="secondary" size="small" value={ed.ID}>Delete</Button>
+              <Button variant="outlined"  color="secondary" size="small" value={ed.ID} onClick={()=>{deletedata(ed.ID)}}>Delete</Button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
               <FaDelicious style={{color:"#D509F3"}}/>
+ </form>
               
             </CardActions>
 </Box>
@@ -195,6 +258,7 @@ let der =()=>{
             signin: true,
         })
     }
+ 
     let returns = ()=>{
       // return <Redirect to='/'/>
       setState({...state,
@@ -219,10 +283,17 @@ let der =()=>{
         return <Redirect to="/"/>
       }
     }
+   
     let textarea= (event) =>{
       let content=event.target.value;
       setState({...state,
         content:content,
+      })
+    }
+    let Logout = ()=>{
+      localStorage.removeItem("Token");
+      setState({...state,
+        redirect:true,
       })
     }
 
@@ -288,7 +359,7 @@ let der =()=>{
         alignItems="flex-end"> 
               <Button color="inherit"  onClick={signUp}><FaRss/>&nbsp;&nbsp;Feed</Button>
            
-              <Button color="inherit"  onClick={signUp}><FaUserAlt/>&nbsp;&nbsp;Logout</Button>
+              <Button color="inherit"  onClick={Logout}><FaUserAlt/>&nbsp;&nbsp;Logout</Button>
       </Grid>
               </Toolbar>
 
@@ -383,17 +454,17 @@ fetch('https://apicalling.herokuapp.com/feed/post',{
       body:formData,
       
     }).then(res=>{
-
+       setState({
+          Dialog:false,
+          status:"",
+        })
   }).catch(err=>{
           console.log(err);
         });
-
-    setTimeout(()=>{
-      setState({...state,
-          Dialog:false,
+       setState({...state,
+          status:"",
         })
-    },800);
-        
+         
     }
     return (
         <div className={appbar}>
