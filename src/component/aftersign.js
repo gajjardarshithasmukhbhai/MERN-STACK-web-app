@@ -455,14 +455,17 @@ fetch('https://apicalling.herokuapp.com/feed/post',{
       
     }).then(res=>{
        setState({...state,
-          Dialog:false,
           status:"",
+          Dialog:false,
+          
         })
   }).catch(err=>{
           console.log(err);
         });
        setState({...state,
           status:"",
+          Dialog:false,
+
         })
          
     }
