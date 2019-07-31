@@ -144,7 +144,7 @@ let Next = () => {
     .catch(err=>{
       console.log("mission unsuccessful");
     });
-      setState({
+      setState({...state,
         tk:true,
         status:"darshit hello",
       })  
@@ -454,7 +454,7 @@ fetch('https://apicalling.herokuapp.com/feed/post',{
       body:formData,
       
     }).then(res=>{
-       setState({
+       setState({...state,
           Dialog:false,
           status:"",
         })
