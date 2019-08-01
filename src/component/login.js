@@ -73,7 +73,7 @@ else{
     const full_page=()=>{
       if(state.cookie)
       {
-        fetch('https://apicalling.herokuapp.com/feed/Token',{
+        fetch('http://localhost:7080/feed/Token',{
           method:'POST',
           body:JSON.stringify({
               Token:localStorage.getItem('Token'),
@@ -212,7 +212,7 @@ else{
     }
   }
   let submit=(ed)=>{
-    fetch('https://apicalling.herokuapp.com/feed/Loginpost',{
+    fetch('http://localhost:7080/feed/Loginpost',{
       method:'POST',
       body:JSON.stringify({
         email:state.email,

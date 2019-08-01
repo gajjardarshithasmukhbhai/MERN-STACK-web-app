@@ -86,7 +86,7 @@ let Next = () => {
   useEffect(()=>{
     console.log(":::::+++++:::::::");
 
-    fetch("https://apicalling.herokuapp.com/feed/Token",{
+    fetch("http://localhost:7080/feed/Token",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -127,7 +127,7 @@ let Next = () => {
   },[state.Dialog]);
   let deletedata=(event)=>{
    
-    fetch("https://apicalling.herokuapp.com/feed/delete",{
+    fetch("http://localhost:7080/feed/delete",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -150,8 +150,7 @@ let Next = () => {
       })  
   }
   useEffect(()=>{
-    console.log("::::::::::::::::");
-    let sk=fetch("https://apicalling.herokuapp.com/feed/get_post",{
+    let sk=fetch("http://localhost:7080/feed/get_post",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -180,7 +179,7 @@ let Next = () => {
   let api_call=()=>{
 
     setTimeout(()=>{
-       let sk=fetch("https://apicalling.herokuapp.com/feed/get_post",{
+       let sk=fetch("http://localhost:7080/feed/get_post",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -216,7 +215,7 @@ let Next = () => {
 <Card >
       <Box textAlign="left">
             <CardContent>
-            <img class="card-img-top" src={`https://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap"/>
+            <img class="card-img-top" src={`http://localhost:7080/uploads/${ed.image}`} alt="Card image cap"/>
               <br/>
               <br/>
               <Typography variant="h5" component="h2">
@@ -229,9 +228,9 @@ let Next = () => {
             <CardActions>
  <form>
  <input type="hidden" id="dataa" value={ed.ID}/>
-              <Button variant="outlined" color="primary"  size="small" value={ed.ID}>Edit</Button>
-              <Button variant="outlined"  color="secondary" size="small" value={ed.ID} onClick={()=>{deletedata(ed.ID)}}>Delete</Button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              <Button variant="outlined" color="primary"  size="small" value={ed.ID} >Edit</Button>
+        &nbsp;&nbsp;<Button variant="outlined"  color="secondary" size="small" value={ed.ID}  onClick={()=>{deletedata(ed.ID)}}>Delete</Button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
               <FaDelicious style={{color:"#D509F3"}}/>
  </form>
               
@@ -263,13 +262,9 @@ let Next = () => {
       })
     }
     let image= (event) =>{
-      //problem ahiya hato hu always be
-      // let path=event.target.value; karto to
-      //je na ave be remember
+
+
       let path=event.target.files[0];
-      // console.log("....>",path);  
-      // setState({...state,
-      // })
       setState({...state,
         url:URL.createObjectURL(event.target.files[0]),
         ImageData:path,  
@@ -447,7 +442,7 @@ formData.append('post',state.mystatus);
 formData.append('image',state.ImageData);
 formData.append('content',state.content);
 formData.append('Token',Token);
-fetch('https://apicalling.herokuapp.com/feed/post',{
+fetch('http://localhost:7080/feed/post',{
       method:'POST',
       body:formData,
       
@@ -458,12 +453,14 @@ fetch('https://apicalling.herokuapp.com/feed/post',{
           content:"",
           url:""
         })
-       
   }).catch(err=>{
           console.log(err);
         });
        setState({...state,
           mystatus:"",
+          Dialog:false,
+          content:"",
+          url:""
         })
          
     }
