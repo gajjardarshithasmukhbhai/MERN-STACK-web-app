@@ -127,7 +127,7 @@ let Next = () => {
   },[state.Dialog]);
   let deletedata=(event)=>{
    
-    fetch("https://apicalling.herokuapp.comfeed/delete",{
+    fetch("https://apicalling.herokuapp.com/feed/delete",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
