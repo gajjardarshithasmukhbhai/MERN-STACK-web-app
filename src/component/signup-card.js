@@ -89,7 +89,7 @@ let SignupCard=()=> {
     }
   }
   let submitData=()=>{
-    fetch('https://apicalling.herokuapp.com/feed/signupost',{
+    fetch('http://localhost:7080/feed/signupost',{
     method:'POST',
     body:JSON.stringify({
       email:state.email,

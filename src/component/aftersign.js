@@ -72,7 +72,7 @@ let Next = () => {
   const [state, setState] = useState({
         signin: false,
         signup: false,
-        status: "",
+        mystatus:"",
         Dialog: false,
         cookie:false,
         open:false,
@@ -84,7 +84,9 @@ let Next = () => {
         tk:false,
     });
   useEffect(()=>{
-    fetch("https://apicalling.herokuapp.com/feed/Token",{
+    console.log(":::::+++++:::::::");
+
+    fetch("http://localhost:7080/feed/Token",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -121,12 +123,11 @@ let Next = () => {
       open:true,
     })
   }
-  console.log("---------");
     // der();
   },[state.Dialog]);
   let deletedata=(event)=>{
    
-    fetch("https://apicalling.herokuapp.com/feed/delete",{
+    fetch("http://localhost:7080/feed/delete",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -145,13 +146,12 @@ let Next = () => {
       console.log("mission unsuccessful");
     });
       setState({...state,
-        tk:true,
-        status:"darshit hello",
+        Dialog:0,
       })  
   }
   useEffect(()=>{
     console.log("::::::::::::::::");
-    let sk=fetch("https://apicalling.herokuapp.com/feed/get_post",{
+    let sk=fetch("http://localhost:7080/feed/get_post",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -166,7 +166,6 @@ let Next = () => {
 
     })
     .then(data=>{
-      console.log(data.message);
       setState({...state,
         Apidata:data.message,
         cookie:true,
@@ -181,7 +180,7 @@ let Next = () => {
   let api_call=()=>{
 
     setTimeout(()=>{
-       let sk=fetch("https://apicalling.herokuapp.com/feed/get_post",{
+       let sk=fetch("http://localhost:7080/feed/get_post",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -194,7 +193,6 @@ let Next = () => {
       return res.json();
     })
     .then(data=>{
-      console.log(data.message);
       setState({...state,
         Apidata:data.message,
         cookie:true,
@@ -208,7 +206,6 @@ let Next = () => {
 
   }
     let Apidata = ()=>{
-      console.log("{{{",state.Apidata);
       if(state.Apidata!=undefined){
           return (<div>
         {
@@ -219,7 +216,7 @@ let Next = () => {
 <Card >
       <Box textAlign="left">
             <CardContent>
-            <img class="card-img-top" src={`https://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap"/>
+            <img class="card-img-top" src={`http://localhost:7080/uploads/${ed.image}`} alt="Card image cap"/>
               <br/>
               <br/>
               <Typography variant="h5" component="h2">
@@ -425,12 +422,13 @@ let Next = () => {
     }
     let mystatus = (e) => {
         let text = e.target.value;
+        console.log(text);
         setState({ ...state,
-            status: text,
+            mystatus: text,
         })
     }
     let submitData=()=>{
-      if(state.status.length>6)
+      if(state.mystatus.length>6)
       {
         setState({...state,
           Dialog:true,
@@ -445,27 +443,26 @@ let Next = () => {
     let handleClose=()=>{
 let formData=new FormData();
 let Token=localStorage.getItem('Token');
-formData.append('post',state.status);
+formData.append('post',state.mystatus);
 formData.append('image',state.ImageData);
 formData.append('content',state.content);
 formData.append('Token',Token);
-fetch('https://apicalling.herokuapp.com/feed/post',{
+fetch('http://localhost:7080/feed/post',{
       method:'POST',
       body:formData,
       
     }).then(res=>{
        setState({...state,
-          status:"",
           Dialog:false,
-          
+          mystatus:"",
+          content:"",
+          url:""
         })
   }).catch(err=>{
           console.log(err);
         });
        setState({...state,
-          status:"",
-          Dialog:false,
-
+          mystatus:"",
         })
          
     }
