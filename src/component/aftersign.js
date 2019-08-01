@@ -86,7 +86,7 @@ let Next = () => {
   useEffect(()=>{
     console.log(":::::+++++:::::::");
 
-    fetch("http://localhost:7080/feed/Token",{
+    fetch("https://apicalling.herokuapp.com/feed/Token",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -127,7 +127,7 @@ let Next = () => {
   },[state.Dialog]);
   let deletedata=(event)=>{
    
-    fetch("http://localhost:7080/feed/delete",{
+    fetch("https://apicalling.herokuapp.comfeed/delete",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -150,7 +150,7 @@ let Next = () => {
       })  
   }
   useEffect(()=>{
-    let sk=fetch("http://localhost:7080/feed/get_post",{
+    let sk=fetch("https://apicalling.herokuapp.com/feed/get_post",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -179,7 +179,7 @@ let Next = () => {
   let api_call=()=>{
 
     setTimeout(()=>{
-       let sk=fetch("http://localhost:7080/feed/get_post",{
+       let sk=fetch("https://apicalling.herokuapp.com/feed/get_post",{
       method:'POST',
       body:JSON.stringify({
           Token:localStorage.getItem('Token'),
@@ -215,7 +215,7 @@ let Next = () => {
 <Card >
       <Box textAlign="left">
             <CardContent>
-            <img class="card-img-top" src={`http://localhost:7080/uploads/${ed.image}`} alt="Card image cap"/>
+            <img class="card-img-top" src={`https://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap"/>
               <br/>
               <br/>
               <Typography variant="h5" component="h2">
@@ -442,7 +442,7 @@ formData.append('post',state.mystatus);
 formData.append('image',state.ImageData);
 formData.append('content',state.content);
 formData.append('Token',Token);
-fetch('http://localhost:7080/feed/post',{
+fetch('https://apicalling.herokuapp.com/feed/post',{
       method:'POST',
       body:formData,
       
