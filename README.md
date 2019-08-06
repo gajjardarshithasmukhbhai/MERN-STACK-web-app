@@ -1,95 +1,68 @@
-<p align="center">
-  <img src="https://media.giphy.com/media/b2CD0Qrq2ulwY/giphy.gif" alt="MERN stack" align="center" width="250">
-</p>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<h1 align="center"> MERN stack base Todo chatting app in Devlopment Phase </h1>
-<p align="center">
-<a href="https://www.npmjs.com/package/react-poke-sprites">
-  <img src="https://img.shields.io/npm/v/react-poke-sprites.svg?style=for-the-badge" align="center">
-</a>
+## Available Scripts
 
-<a href="https://github.com/anshumanv/react-poke-sprites">
-  <img src="https://img.shields.io/github/license/anshumanv/react-poke-sprites.svg?style=for-the-badge" align="center">
-</a>
-</p>
+In the project directory, you can run:
 
-<hr>
+### `npm start`
 
-<p align="center">I create my own Rest Api</p>
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-### Installation
-Install the npm module in your app directory.
-```sh
-npm install
-```
-# Frontends
-<!--
-  TECHNOLOGY:
-     1: React 
-     2: React material Ui
-     3: Bootstrap4
-     4: font-awesome
--->
-> _below technology mention_
+### `npm test`
 
-| 🥇 | 🥈 |
-| :---: |     :---------:      | 
-| [**React**<br/> ![React / Redux](https://raw.githubusercontent.com/gothinkster/react-redux-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/react-redux-realworld-example-app.svg?style=social&label=Star)| [**Font awesome**<br/> ![Angulars](https://camo.githubusercontent.com/ea918e1b9b63970c16e946fc131bf36be3cff754/68747470733a2f2f696d672e666f7274617765736f6d652e636f6d2f33343963666466362f6c6f676f2d66612d667265652e737667)
-| [**Bootstrap4**<br/> ![AngularJS](https://avatars1.githubusercontent.com/u/2918581?s=200&v=4) ![Star](https://img.shields.io/github/stars/gothinkster/angularjs-realworld-example-app.svg?style=social&label=Star)
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `npm run build`
 
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-# Backends
-<!--
-  TEchnology:
-     1: Node / Express
-     2: MVC architecture
-     3: bcrypt JS
-     4: jsonwebtoken
-     5: mongodb
-     6: passport
-     7: passport-google-oauth20
-     8: REST API
-     -->
-> _below technology mention_
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-| 🥇 |
-| :---:     | 
-| [**Node / Express**<br/> ![Node / Express](https://raw.githubusercontent.com/gothinkster/node-express-realworld-example-app/master/project-logo.png) ![Star](https://img.shields.io/github/stars/gothinkster/node-express-realworld-example-app.svg?style=social&label=Star) ![Fork](https://img.shields.io/github/forks/gothinkster/node-express-realworld-example-app.svg?style=social&label=Fork)](https://github.com/gothinkster/node-express-realworld-example-app)
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### web app images
-  <img src="./p1.PNG" alt="MERN stack" align="left" width="250">
-  <img src="./p2.PNG" alt="MERN stack" align="right" width="250"><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+### `npm run eject`
 
-### Credits
-```txt
-this web app specially i design because i know MERN stack but i not make my demo web app in mern stack so specially i design
-this web app to inhabce my skill.
-```
-## Tools and Technology
-<img src="https://img.shields.io/badge/reactJs-frontend-yellowgreen.svg" align="center">
-<img src="https://img.shields.io/badge/NodeJs-backend-blue.svg" align="center">
-<img src=" https://img.shields.io/badge/expressJS-backend-yellow.svg" align="center">
-<img src=" https://img.shields.io/badge/encryption-backend-yellow.svg" align="center">
-<img src="https://img.shields.io/badge/bootstrap-frontend-yellowgreen.svg" align="center">
-<img src="https://img.shields.io/badge/RESTAPI-backend-yellowgreen.svg" align="center">
-<img src="https://img.shields.io/badge/SocketIO-webrtc-yellowgreen.svg" align="center">
-<img src="https://img.shields.io/badge/MongoDB-Database-yellowgreen.svg" align="center">
-<img src="https://img.shields.io/badge/reactMaterialUi-frontend-yellowgreen.svg" align="center">
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## Author
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-[Darshit Gajjar](https://github.com/gajjardarshithasmukhbhai)
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-[<img src="https://image.flaticon.com/icons/svg/185/185964.svg" width="35" padding="10">](https://www.linkedin.com/in/darshit-gajjar-532098152/)
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+## Learn More
 
-## Contribute
-Found a bug, please contact my website [create an issue](https://github.com/gajjardarshithasmukhbhai/MERN-STACK-web-app/issues/new)
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-## License
+### Code Splitting
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/gajjardarshithasmukhbhai/react-poke-sprites/blob/master/LICENSE)
-> © Darshit Gajjar(Full stack devloper)
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
