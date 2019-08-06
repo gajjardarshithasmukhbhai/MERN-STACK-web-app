@@ -35,6 +35,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import CardMedia from '@material-ui/core/CardMedia';
 import {FaJediOrder} from 'react-icons/fa';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {Lines} from 'react-preloaders';
 const appbar = style({
     flexGrow: 1,
 })
@@ -81,7 +82,7 @@ let Next = () => {
         content:"",
         ImageData:"",
         Apidata:[],
-        tk:false,
+        preloader:false,
     });
   useEffect(()=>{
     fetch("https://apicalling.herokuapp.com/feed/Token",{
@@ -400,6 +401,12 @@ let Next = () => {
             signup: true,
         })
     }
+    let pre_loader = ()=>{
+      if(state.preloader){
+        return <Lines background="#81d4fa" animation="slide-down" color={'#ec407a'} />
+      }
+
+    }
     let mystatus = (e) => {
         let text = e.target.value;
         console.log(text);
@@ -421,6 +428,9 @@ let Next = () => {
       }
     }
     let handleClose=()=>{
+    setState({...state,
+      preloader:true,
+    })
 let formData=new FormData();
 let Token=localStorage.getItem('Token');
 formData.append('post',state.mystatus);
@@ -437,24 +447,25 @@ fetch('https://apicalling.herokuapp.com/feed/post',{
           Dialog:false,
           mystatus:"",
           content:"",
-          url:""
+          url:"",
+          preloader:false
         })
   }).catch(err=>{
           console.log(err);
         });
-       setState({...state,
-          mystatus:"",
-          Dialog:false,
-          content:"",
-          url:""
-        })
+       // setState({...state,
+       //    mystatus:"",
+       //    Dialog:false,
+       //    content:"",
+       //    url:""
+       //  })
          
     }
     return (
         <div className={appbar}>
         {page_load()}
         {call()}
-
+        {pre_loader()}
       </div>
     );
 }
