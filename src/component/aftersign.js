@@ -246,14 +246,11 @@ let Next = () => {
     }
  
     let returns = ()=>{
-      // return <Redirect to='/'/>
       setState({...state,
         redirect:true,
       })
     }
     let image= (event) =>{
-
-
       let path=event.target.files[0];
       setState({...state,
         url:URL.createObjectURL(event.target.files[0]),
