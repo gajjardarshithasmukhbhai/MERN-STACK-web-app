@@ -1,0 +1,1 @@
+{"version":3,"sources":["login.css","status.css"],"names":[],"mappings":"AAAA,QACC,sBACD,CCFA,UACE,OAAU,CACV,UAAY,CACZ,uBACF","file":"main.abb10204.chunk.css","sourcesContent":[".button{\r\n\tbackground-color: green;\r\n}",".dropzone {\r\n  width : 0%;\r\n  height : 10%;\r\n  outline:\"0 !important;\";\r\n}"]}
