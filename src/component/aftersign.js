@@ -36,6 +36,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import {FaJediOrder} from 'react-icons/fa';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {Lines} from 'react-preloaders';
+var async = require("async");
 const appbar = style({
     flexGrow: 1,
 })
@@ -183,6 +184,8 @@ let Next = () => {
 
     })
     .then(data=>{
+     
+
       setState({...state,
         Apidata:data.message,
         cookie:true,
@@ -252,7 +255,10 @@ let Next = () => {
       })
     }
     let image= (event) =>{
+      
       let path=event.target.files[0];
+      console.log(path);
+
       setState({...state,
         url:URL.createObjectURL(event.target.files[0]),
         ImageData:path,  
@@ -305,6 +311,7 @@ let Next = () => {
                     </div>
                   </form>
                   <div className="p-5">
+                  {console.log(">>>",state.url)}
                   <img src={state.url} className="img-thumbnail border border-primary"/>
                   </div>
                   <div class="form-group">
@@ -316,7 +323,11 @@ let Next = () => {
 
                 </DialogContent>
                 <DialogActions>
-                  <Button onClick={handleClose} variant="contained" color="primary">
+                  <Button onClick={()=>{
+                    handleClose((xd)=>{
+                      window.location.reload();
+                    });
+                  }} variant="contained" color="primary">
                     Accept
                   </Button>
                 </DialogActions>
@@ -325,7 +336,6 @@ let Next = () => {
       <Grid container>
             <Grid item xs={12} md={12} sm={12}>
       <MuiThemeProvider theme={Theme}>
-
           <AppBar>
               <Toolbar className={toolbar}>
               <Button color="inherit" onClick={signin} variant="outlined" exact to="/signUp">
@@ -365,9 +375,9 @@ let Next = () => {
 
       <div class="container">
 
-      <div class="col-sm-1 col-md-2">
+      <div class="col-sm-0 col-md-2">
       </div>
-      <div class="col-sm-11 col-md-8">
+      <div class="col-sm-12 col-md-8">
 
       <center>
       {Apidata()}
@@ -379,7 +389,7 @@ let Next = () => {
       </center>
       </div>
 
-      <div class="col-sm-1 col-md-2">
+      <div class="col-sm-0 col-md-2">
       </div>
       </div>
       </center>          
@@ -403,11 +413,12 @@ let Next = () => {
     }
     let pre_loader = ()=>{
       if(state.preloader){
-        return <Lines background="#81d4fa" animation="slide-down" color={'#ec407a'} />
+        return <Lines background="#81d4fa" animation="slide-down" color={'#392CEA'} />
       }
 
     }
     let mystatus = (e) => {
+        
         let text = e.target.value;
         console.log(text);
         setState({ ...state,
@@ -427,7 +438,8 @@ let Next = () => {
         })
       }
     }
-    let handleClose=()=>{
+    let handleClose=(callback)=>{
+    
     setState({...state,
       preloader:true,
     })
@@ -442,7 +454,11 @@ fetch('https://apicalling.herokuapp.com/feed/post',{
       body:formData,
       
     }).then(res=>{
+//start the fetch data
 
+  callback("i am call");
+
+//enD
        setState({...state,
           Dialog:false,
           mystatus:"",
@@ -450,6 +466,7 @@ fetch('https://apicalling.herokuapp.com/feed/post',{
           url:"",
           preloader:false
         })
+
   }).catch(err=>{
           console.log(err);
         });
