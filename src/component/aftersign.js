@@ -325,7 +325,31 @@ let Next = () => {
                 <DialogActions>
                   <Button onClick={()=>{
                     handleClose((xd)=>{
-                      window.location.reload();
+                        fetch("https://apicalling.herokuapp.com/feed/get_post",{
+                        method:'POST',
+                        body:JSON.stringify({
+                            Token:localStorage.getItem('Token'),
+                        }),
+                        headers:{
+                          'Content-Type':'application/json',
+                        }
+                      })
+                      .then(res=>{
+                        return res.json();
+
+                      })
+                      .then(data=>{
+                        setState({...state,
+                          Apidata:data.message,
+                          cookie:true,
+                         Dialog:false
+                        })
+                      })
+
+                      .catch(err=>{
+                        console.log("mission unsuccessful");
+                      });          
+
                     });
                   }} variant="contained" color="primary">
                     Accept
