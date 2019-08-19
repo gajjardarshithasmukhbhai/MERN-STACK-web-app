@@ -36,6 +36,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import {FaJediOrder} from 'react-icons/fa';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {Lines} from 'react-preloaders';
+import { Scrollbars } from 'react-custom-scrollbars';
 var async = require("async");
 const appbar = style({
     flexGrow: 1,
@@ -47,6 +48,10 @@ const typo = style({
 })
 const mail = style({
     fontSize: "26px",
+})
+let card1=style({
+backgroundColor: "#ffffff",
+backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='139' height='139' viewBox='0 0 200 200'%3E%3Cpolygon fill='%23e91e63' fill-opacity='0.33' points='100 0 0 100 100 100 100 200 200 100 200 0'/%3E%3C/svg%3E")`,
 })
 const theme = createMuiTheme();
 let Theme = createMuiTheme({ shadows: [0] });
@@ -64,7 +69,7 @@ const toolbar = style({
 })
 const posting = style({
     width: "40%",
-    postion: "absolute",
+    postion: "relative",
     left: "-6%",
 })
 const right = style({
@@ -84,6 +89,7 @@ let Next = () => {
         ImageData:"",
         Apidata:[],
         preloader:false,
+        TK:true
     });
   useEffect(()=>{
     fetch("https://apicalling.herokuapp.com/feed/Token",{
@@ -184,8 +190,6 @@ let Next = () => {
 
     })
     .then(data=>{
-     
-
       setState({...state,
         Apidata:data.message,
         cookie:true,
@@ -204,9 +208,9 @@ let Next = () => {
         {
 
   state.Apidata.map(ed=>
-    <div>
 
-<Card >
+    <div key={ed.title} >
+<Card className={card1}>
       <Box textAlign="left">
             <CardContent>
             <img class="card-img-top" src={`https://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap"/>
@@ -221,9 +225,11 @@ let Next = () => {
   </div>
             <CardActions>
  <form>
+
  <input type="hidden" id="dataa" value={ed.ID}/>
-              <Button variant="outlined" color="primary"  size="small" value={ed.ID} >Edit</Button>
-        &nbsp;&nbsp;<Button variant="outlined"  color="secondary" size="small" value={ed.ID}  onClick={()=>{deletedata(ed.ID)}}>Delete</Button>
+
+              <Button variant="contained" color="primary"  size="small" value={ed.ID} >Edit</Button>
+        &nbsp;&nbsp;<Button variant="contained"  color="secondary" size="small" value={ed.ID}  onClick={()=>{deletedata(ed.ID)}}>Delete</Button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
               <FaDelicious style={{color:"#D509F3"}}/>
  </form>
@@ -232,9 +238,11 @@ let Next = () => {
 </Box>
           </Card>
        <br/>
+
           </div>
         )
 }
+
       </div>)
       }
       else{
@@ -325,31 +333,33 @@ let Next = () => {
                 <DialogActions>
                   <Button onClick={()=>{
                     handleClose((xd)=>{
+                      setTimeout(()=>{
+      
                         fetch("https://apicalling.herokuapp.com/feed/get_post",{
-                        method:'POST',
-                        body:JSON.stringify({
-                            Token:localStorage.getItem('Token'),
-                        }),
-                        headers:{
-                          'Content-Type':'application/json',
-                        }
-                      })
-                      .then(res=>{
-                        return res.json();
+      method:'POST',
+      body:JSON.stringify({
+          Token:localStorage.getItem('Token'),
+      }),
+      headers:{
+        'Content-Type':'application/json',
+      }
+    })
+    .then(res=>{
+      return res.json();
 
-                      })
-                      .then(data=>{
-                        setState({...state,
-                          Apidata:data.message,
-                          cookie:true,
-                         Dialog:false
-                        })
-                      })
+    })
+    .then(data=>{
+      setState({...state,
+        Apidata:data.message,
+        cookie:true,
+       Dialog:false
+      })
+    })
 
-                      .catch(err=>{
-                        console.log("mission unsuccessful");
-                      });          
-
+    .catch(err=>{
+      console.log("mission unsuccessful");
+    });          
+                      },800);
                     });
                   }} variant="contained" color="primary">
                     Accept
@@ -405,6 +415,7 @@ let Next = () => {
 
       <center>
       {Apidata()}
+    
 
         
           <br/>
