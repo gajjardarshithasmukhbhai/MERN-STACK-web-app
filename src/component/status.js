@@ -123,11 +123,12 @@ let Status = props => {
     url: "",
     Data: [],
     Status: "",
-    fetStatus: []
+    fetStatus: [],
+    imageUrl: ""
   })
   useEffect(() => {
 
-    fetch('https://apicalling.herokuapp.com/feed/GetStatus', {
+    fetch('http://apicalling.herokuapp.com/feed/GetStatus', {
       method: 'POST',
       body: JSON.stringify({
         Token: localStorage.getItem('Token'),
@@ -154,12 +155,13 @@ let Status = props => {
     onDrop: (files) => {
       let ata;
       files.map(ex => {
-        console.log(";;", ex);
+        let url = URL.createObjectURL(ex);
         setState({
           ...state,
           Data: ex,
           url: "",
-          status: ""
+          status: "",
+          imageUrl: url
         })
       });
 
@@ -176,7 +178,7 @@ let Status = props => {
       acceptedFiles.map(ex => {
         Data = ex;
       });
-      return <img src={URL.createObjectURL(Data)} className={status_img} />
+      return <img src={state.imageUrl} className={status_img} id="image" />
     }
   }
   let formData = new FormData();
@@ -186,7 +188,7 @@ let Status = props => {
   formData.append('image', state.Data);
   let DeletePost = (name, status) => {
 
-    fetch('https://apicalling.herokuapp.com/feed/DeleteStatus', {
+    fetch('http://apicalling.herokuapp.com/feed/DeleteStatus', {
       method: 'POST',
       body: JSON.stringify({
         userName: name,
@@ -199,7 +201,7 @@ let Status = props => {
     })
       .then(de => {
         if (de.status === 200) {
-          fetch('https://apicalling.herokuapp.com/feed/GetStatus', {
+          fetch('http://apicalling.herokuapp.com/feed/GetStatus', {
             method: 'POST',
             body: JSON.stringify({
               Token: localStorage.getItem('Token'),
@@ -234,35 +236,39 @@ let Status = props => {
       Data: [],
 
     })
-    fetch('https://apicalling.herokuapp.com/feed/chatpost', {
+    document.getElementById("image").src = "";
+    fetch('http://apicalling.herokuapp.com/feed/chatpost', {
       method: 'POST',
       body: formData,
     })
-      .catch(err => {
-        console.log(err);
-      });
-    fetch('https://apicalling.herokuapp.com/feed/GetStatus', {
-      method: 'POST',
-      body: JSON.stringify({
-        Token: localStorage.getItem('Token'),
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    }).then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setState({
-          ...state,
-          fetStatus: data.Status,
-          url: "",
-          Status: "",
-          Data: []
-        })
+      .then(ef => {
+        fetch('http://apicalling.herokuapp.com/feed/GetStatus', {
+          method: 'POST',
+          body: JSON.stringify({
+            Token: localStorage.getItem('Token'),
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        }).then(res => res.json())
+          .then(data => {
+            console.log(data);
+            setState({
+              ...state,
+              fetStatus: data.Status,
+              url: "",
+              Status: "",
+              Data: []
+            })
+          })
+          .catch(err => {
+            console.log(err);
+          });
       })
       .catch(err => {
         console.log(err);
       });
+
   }
   let Status = (e) => {
     setState({
@@ -358,7 +364,7 @@ let Status = props => {
                 <List >
                   <ListItem alignItems="flex-start">
                     <ListItemAvatar>
-                      <Avatar src={`https://apicalling.herokuapp.com/uploads/${ed.fileName}`} alt="Remy Sharp" style={{ width: "56px", height: "56px" }} />
+                      <Avatar src={`http://apicalling.herokuapp.com/uploads/${ed.fileName}`} alt="Remy Sharp" style={{ width: "56px", height: "56px" }} />
                     </ListItemAvatar>
                     &nbsp;
                     &nbsp;

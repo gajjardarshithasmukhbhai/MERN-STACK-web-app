@@ -37,6 +37,7 @@ import { FaJediOrder } from 'react-icons/fa';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Lines } from 'react-preloaders';
 import { Scrollbars } from 'react-custom-scrollbars';
+import Snackbar from '@material-ui/core/Snackbar';
 
 var async = require("async");
 const appbar = style({
@@ -52,7 +53,9 @@ const mail = style({
 })
 let card1 = style({
   backgroundColor: "#ffffff",
-  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='139' height='139' viewBox='0 0 200 200'%3E%3Cpolygon fill='%23e91e63' fill-opacity='0.33' points='100 0 0 100 100 100 100 200 200 100 200 0'/%3E%3C/svg%3E")`,
+  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='50' height='25' viewBox='0 0 50 25'%3E%3Cdefs%3E%3Crect stroke='%23ffffff' stroke-width='0.1' width='1' height='1' id='s'/%3E%3Cpattern id='a' width='2' height='2' patternUnits='userSpaceOnUse'%3E%3Cg stroke='%23ffffff' stroke-width='0.1'%3E%3Crect fill='%23fafafa' width='1' height='1'/%3E%3Crect fill='%23ffffff' width='1' height='1' x='1' y='1'/%3E%3Crect fill='%23f5f5f5' width='1' height='1' y='1'/%3E%3Crect fill='%23f0f0f0' width='1' height='1' x='1'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='b' width='5' height='11' patternUnits='userSpaceOnUse'%3E%3Cg fill='%23ebebeb'%3E%3Cuse xlink:href='%23s' x='2' y='0'/%3E%3Cuse xlink:href='%23s' x='4' y='1'/%3E%3Cuse xlink:href='%23s' x='1' y='2'/%3E%3Cuse xlink:href='%23s' x='2' y='4'/%3E%3Cuse xlink:href='%23s' x='4' y='6'/%3E%3Cuse xlink:href='%23s' x='0' y='8'/%3E%3Cuse xlink:href='%23s' x='3' y='9'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='c' width='7' height='7' patternUnits='userSpaceOnUse'%3E%3Cg fill='%23e5e5e5'%3E%3Cuse xlink:href='%23s' x='1' y='1'/%3E%3Cuse xlink:href='%23s' x='3' y='4'/%3E%3Cuse xlink:href='%23s' x='5' y='6'/%3E%3Cuse xlink:href='%23s' x='0' y='3'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='d' width='11' height='5' patternUnits='userSpaceOnUse'%3E%3Cg fill='%23ffffff'%3E%3Cuse xlink:href='%23s' x='1' y='1'/%3E%3Cuse xlink:href='%23s' x='6' y='3'/%3E%3Cuse xlink:href='%23s' x='8' y='2'/%3E%3Cuse xlink:href='%23s' x='3' y='0'/%3E%3Cuse xlink:href='%23s' x='0' y='3'/%3E%3C/g%3E%3Cg fill='%23e0e0e0'%3E%3Cuse xlink:href='%23s' x='8' y='3'/%3E%3Cuse xlink:href='%23s' x='4' y='2'/%3E%3Cuse xlink:href='%23s' x='5' y='4'/%3E%3Cuse xlink:href='%23s' x='10' y='0'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='e' width='47' height='23' patternUnits='userSpaceOnUse'%3E%3Cg fill='%23BA7'%3E%3Cuse xlink:href='%23s' x='2' y='5'/%3E%3Cuse xlink:href='%23s' x='23' y='13'/%3E%3Cuse xlink:href='%23s' x='4' y='18'/%3E%3Cuse xlink:href='%23s' x='35' y='9'/%3E%3C/g%3E%3C/pattern%3E%3Cpattern id='f' width='61' height='31' patternUnits='userSpaceOnUse'%3E%3Cg fill='%23BA7'%3E%3Cuse xlink:href='%23s' x='16' y='0'/%3E%3Cuse xlink:href='%23s' x='13' y='22'/%3E%3Cuse xlink:href='%23s' x='44' y='15'/%3E%3Cuse xlink:href='%23s' x='12' y='11'/%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23a)' width='50' height='25'/%3E%3Crect fill='url(%23b)' width='50' height='25'/%3E%3Crect fill='url(%23c)' width='50' height='25'/%3E%3Crect fill='url(%23d)' width='50' height='25'/%3E%3Crect fill='url(%23e)' width='50' height='25'/%3E%3Crect fill='url(%23f)' width='50' height='25'/%3E%3C/svg%3E")`,
+  backgroundSize: "cover",
+  backgroundAttachment: "fixed"
 })
 const theme = createMuiTheme();
 let Theme = createMuiTheme({ shadows: [0] });
@@ -98,7 +101,7 @@ let Next = () => {
       console.log("+++", localStorage.getItem(localStorage.getItem('Token')));
 
     }, 2000)
-    fetch("https://apicalling.herokuapp.com/feed/Token", {
+    fetch("http://apicalling.herokuapp.com/feed/Token", {
       method: 'POST',
       body: JSON.stringify({
         Token: localStorage.getItem('Token'),
@@ -143,7 +146,7 @@ let Next = () => {
   }, []);
   let deletedata = (event) => {
 
-    fetch("https://apicalling.herokuapp.com/feed/delete", {
+    fetch("http://apicalling.herokuapp.com/feed/delete", {
       method: 'POST',
       body: JSON.stringify({
         Token: localStorage.getItem('Token'),
@@ -155,7 +158,7 @@ let Next = () => {
     })
       .then((res) => {
         if (res.status == 200) {
-          fetch("https://apicalling.herokuapp.com/feed/get_post", {
+          fetch("http://apicalling.herokuapp.com/feed/get_post", {
             method: 'POST',
             body: JSON.stringify({
               Token: localStorage.getItem('Token'),
@@ -190,7 +193,7 @@ let Next = () => {
   }
   useEffect(() => {
     console.log("2");
-    let sk = fetch("https://apicalling.herokuapp.com/feed/get_post", {
+    let sk = fetch("http://apicalling.herokuapp.com/feed/get_post", {
       method: 'POST',
       body: JSON.stringify({
         Token: localStorage.getItem('Token'),
@@ -227,11 +230,11 @@ let Next = () => {
 
           state.Apidata.map(ed =>
 
-            <div key={ed.title} >
+            <div key={ed.Id} >
               <Card className={card1}>
                 <Box textAlign="left">
                   <CardContent>
-                    <img class="card-img-top" src={`https://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap" />
+                    <img class="card-img-top" src={`http://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap" />
                     <br />
                     <br />
                     <Typography variant="h5" component="h2">
@@ -246,7 +249,6 @@ let Next = () => {
 
                       <input type="hidden" id="dataa" value={ed.ID} />
 
-                      <Button variant="contained" color="primary" size="small" value={ed.ID} >Edit</Button>
                       &nbsp;&nbsp;<Button variant="contained" color="secondary" size="small" value={ed.ID} onClick={() => { deletedata(ed.ID) }}>Delete</Button>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <FaDelicious style={{ color: "#D509F3" }} />
@@ -304,7 +306,7 @@ let Next = () => {
       preloader: false,
       Dialog: false
     })
-    fetch("https://apicalling.herokuapp.com/feed/get_post", {
+    fetch("http://apicalling.herokuapp.com/feed/get_post", {
       method: 'POST',
       body: JSON.stringify({
         Token: localStorage.getItem('Token'),
@@ -325,7 +327,9 @@ let Next = () => {
           Dialog: false,
           url: "",
           mystatus: "",
-          content: ""
+          content: "",
+          open: false,
+          error: ""
         })
       })
 
@@ -380,8 +384,8 @@ let Next = () => {
                 <img src={state.url} className="img-thumbnail border border-primary" />
               </div>
               <div class="form-group">
-                <label for="exampleInputEmail1">Content</label>
-                <textarea type="textarea" value={state.content} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter DAta" onChange={textarea}>
+                <label for="exampleInputEmail1">Status Message</label>
+                <textarea type="textarea" value={state.content} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Status" onChange={textarea}>
                 </textarea>
               </div>
             </form>
@@ -389,10 +393,18 @@ let Next = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={() => {
+              console.log(state.ImageData)
+              // if (state.ImageData.length > 0) {
+              //   setState({
+              //     ...state,
+              //     open: true,
+              //     error: "please upload image and status message"
+              //   })
+              // }
               handleClose((xd) => {
                 setTimeout(() => {
 
-                  fetch("https://apicalling.herokuapp.com/feed/get_post", {
+                  fetch("http://apicalling.herokuapp.com/feed/get_post", {
                     method: 'POST',
                     body: JSON.stringify({
                       Token: localStorage.getItem('Token'),
@@ -517,14 +529,14 @@ let Next = () => {
   let mystatus = (e) => {
 
     let text = e.target.value;
-    console.log(text);
+
     setState({
       ...state,
       mystatus: text,
     })
   }
   let submitData = () => {
-    if (state.mystatus.length > 6) {
+    if (state.mystatus.length > 4) {
       setState({
         ...state,
         Dialog: true,
@@ -534,32 +546,48 @@ let Next = () => {
       setState({
         ...state,
         Dialog: false,
+        error: "for your status minimum 4 charater required",
+        open: true
       })
     }
   }
   let handleClose = (callback) => {
+    console.log("///....>", state.mystatus.length);
+    if (state.ImageData.size > 0) {
+      setState({
+        ...state,
+        preloader: true,
+      })
+      let formData = new FormData();
+      let Token = localStorage.getItem('Token');
+      formData.append('post', state.mystatus);
+      formData.append('image', state.ImageData);
+      formData.append('content', state.content);
+      formData.append('Token', Token);
+      fetch('http://apicalling.herokuapp.com/feed/post', {
+        method: 'POST',
+        body: formData,
 
-    setState({
-      ...state,
-      preloader: true,
-    })
-    let formData = new FormData();
-    let Token = localStorage.getItem('Token');
-    formData.append('post', state.mystatus);
-    formData.append('image', state.ImageData);
-    formData.append('content', state.content);
-    formData.append('Token', Token);
-    console.log("///....>", state.ImageData);
-    fetch('https://apicalling.herokuapp.com/feed/post', {
-      method: 'POST',
-      body: formData,
+      }).then(res => {
+        //start the fetch data
 
-    }).then(res => {
-      //start the fetch data
+        callback("i am call");
 
-      callback("i am call");
+        //enD
+        setState({
+          ...state,
+          Dialog: false,
+          mystatus: "",
+          content: "",
+          url: "",
+          preloader: false
+        })
 
-      //enD
+      }).catch(err => {
+        console.log(err);
+      });
+    }
+    else {
       setState({
         ...state,
         Dialog: false,
@@ -568,16 +596,32 @@ let Next = () => {
         url: "",
         preloader: false
       })
+    }
 
-    }).catch(err => {
-      console.log(err);
-    });
   }
   return (
     <div className={appbar}>
       {page_load()}
       {call()}
       {pre_loader()}
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={state.open}
+        onClose={() => {
+          setState({
+            ...state,
+            open: false,
+          })
+        }}
+        autoHideDuration={3000}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={<span id="message-id" style={{ color: "#2FE1CA" }}>{state.error}</span>}
+      />
     </div>
   );
 }
