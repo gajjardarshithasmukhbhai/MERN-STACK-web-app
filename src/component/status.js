@@ -128,7 +128,7 @@ let Status = props => {
   })
   useEffect(() => {
 
-    fetch('http://apicalling.herokuapp.com/feed/GetStatus', {
+    fetch('https://apicalling.herokuapp.com/feed/GetStatus', {
       method: 'POST',
       body: JSON.stringify({
         Token: localStorage.getItem('Token'),
@@ -188,7 +188,7 @@ let Status = props => {
   formData.append('image', state.Data);
   let DeletePost = (name, status) => {
 
-    fetch('http://apicalling.herokuapp.com/feed/DeleteStatus', {
+    fetch('https://apicalling.herokuapp.com/feed/DeleteStatus', {
       method: 'POST',
       body: JSON.stringify({
         userName: name,
@@ -201,7 +201,7 @@ let Status = props => {
     })
       .then(de => {
         if (de.status === 200) {
-          fetch('http://apicalling.herokuapp.com/feed/GetStatus', {
+          fetch('https://apicalling.herokuapp.com/feed/GetStatus', {
             method: 'POST',
             body: JSON.stringify({
               Token: localStorage.getItem('Token'),
@@ -237,12 +237,12 @@ let Status = props => {
 
     })
     document.getElementById("image").src = "";
-    fetch('http://apicalling.herokuapp.com/feed/chatpost', {
+    fetch('https://apicalling.herokuapp.com/feed/chatpost', {
       method: 'POST',
       body: formData,
     })
       .then(ef => {
-        fetch('http://apicalling.herokuapp.com/feed/GetStatus', {
+        fetch('https://apicalling.herokuapp.com/feed/GetStatus', {
           method: 'POST',
           body: JSON.stringify({
             Token: localStorage.getItem('Token'),
@@ -364,7 +364,7 @@ let Status = props => {
                 <List >
                   <ListItem alignItems="flex-start">
                     <ListItemAvatar>
-                      <Avatar src={`http://apicalling.herokuapp.com/uploads/${ed.fileName}`} alt="Remy Sharp" style={{ width: "56px", height: "56px" }} />
+                      <Avatar src={`https://apicalling.herokuapp.com/uploads/${ed.fileName}`} alt="Remy Sharp" style={{ width: "56px", height: "56px" }} />
                     </ListItemAvatar>
                     &nbsp;
                     &nbsp;

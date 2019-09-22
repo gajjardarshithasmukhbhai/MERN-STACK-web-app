@@ -101,7 +101,7 @@ let Next = () => {
       console.log("+++", localStorage.getItem(localStorage.getItem('Token')));
 
     }, 2000)
-    fetch("http://apicalling.herokuapp.com/feed/Token", {
+    fetch("https://apicalling.herokuapp.com/feed/Token", {
       method: 'POST',
       body: JSON.stringify({
         Token: localStorage.getItem('Token'),
@@ -146,7 +146,7 @@ let Next = () => {
   }, []);
   let deletedata = (event) => {
 
-    fetch("http://apicalling.herokuapp.com/feed/delete", {
+    fetch("https://apicalling.herokuapp.com/feed/delete", {
       method: 'POST',
       body: JSON.stringify({
         Token: localStorage.getItem('Token'),
@@ -158,7 +158,7 @@ let Next = () => {
     })
       .then((res) => {
         if (res.status == 200) {
-          fetch("http://apicalling.herokuapp.com/feed/get_post", {
+          fetch("https://apicalling.herokuapp.com/feed/get_post", {
             method: 'POST',
             body: JSON.stringify({
               Token: localStorage.getItem('Token'),
@@ -193,7 +193,7 @@ let Next = () => {
   }
   useEffect(() => {
     console.log("2");
-    let sk = fetch("http://apicalling.herokuapp.com/feed/get_post", {
+    let sk = fetch("https://apicalling.herokuapp.com/feed/get_post", {
       method: 'POST',
       body: JSON.stringify({
         Token: localStorage.getItem('Token'),
@@ -234,7 +234,7 @@ let Next = () => {
               <Card className={card1}>
                 <Box textAlign="left">
                   <CardContent>
-                    <img class="card-img-top" src={`http://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap" />
+                    <img class="card-img-top" src={`https://apicalling.herokuapp.com/uploads/${ed.image}`} alt="Card image cap" />
                     <br />
                     <br />
                     <Typography variant="h5" component="h2">
@@ -306,7 +306,7 @@ let Next = () => {
       preloader: false,
       Dialog: false
     })
-    fetch("http://apicalling.herokuapp.com/feed/get_post", {
+    fetch("https://apicalling.herokuapp.com/feed/get_post", {
       method: 'POST',
       body: JSON.stringify({
         Token: localStorage.getItem('Token'),
@@ -404,7 +404,7 @@ let Next = () => {
               handleClose((xd) => {
                 setTimeout(() => {
 
-                  fetch("http://apicalling.herokuapp.com/feed/get_post", {
+                  fetch("https://apicalling.herokuapp.com/feed/get_post", {
                     method: 'POST',
                     body: JSON.stringify({
                       Token: localStorage.getItem('Token'),
@@ -564,7 +564,7 @@ let Next = () => {
       formData.append('image', state.ImageData);
       formData.append('content', state.content);
       formData.append('Token', Token);
-      fetch('http://apicalling.herokuapp.com/feed/post', {
+      fetch('https://apicalling.herokuapp.com/feed/post', {
         method: 'POST',
         body: formData,
 
