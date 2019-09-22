@@ -123,7 +123,7 @@ let SignupCard = () => {
   }
   let Submit = () => {
     if ((state.password === state.retype) && (state.password.length > 5)) {
-      fetch('https://apicalling.herokuapp.com/feed/enterSignup', {
+      fetch('http://apicalling.herokuapp.com/feed/enterSignup', {
         method: 'POST',
         body: JSON.stringify({
           otp: state.otpnumber,
@@ -183,7 +183,7 @@ let SignupCard = () => {
   }
   let submit = () => {
 
-    fetch('https://apicalling.herokuapp.com/feed/UserOtp', {
+    fetch('http://apicalling.herokuapp.com/feed/UserOtp', {
       method: 'POST',
       body: JSON.stringify({
         email: state.email,
@@ -337,7 +337,7 @@ let SignupCard = () => {
       button: 1
     })
 
-    fetch('https://apicalling.herokuapp.com/feed/otp', {
+    fetch('http://apicalling.herokuapp.com/feed/otp', {
       method: 'POST',
       body: JSON.stringify({
         email: state.email,

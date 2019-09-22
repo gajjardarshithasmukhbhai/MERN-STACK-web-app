@@ -19,7 +19,7 @@ class Darshit extends React.Component{
 }
 ReactDOM.render(
 <Router>
-<div>
+<div >
 	<Route exact path="/" component={Darshit}/>
 	<Route exact path="/signUp" component={Signup}/>
 	<Route exact path="/aftersign" component={Next}/>

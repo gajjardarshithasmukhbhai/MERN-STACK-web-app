@@ -80,7 +80,7 @@ const Login = props => {
   }
   const full_page = () => {
     if (state.cookie) {
-      fetch('https://apicalling.herokuapp.com/feed/Token', {
+      fetch('http://apicalling.herokuapp.com/feed/Token', {
         method: 'POST',
         body: JSON.stringify({
           Token: localStorage.getItem('Token'),
@@ -220,7 +220,7 @@ const Login = props => {
     }
   }
   let submit = (ed) => {
-    fetch('https://apicalling.herokuapp.com/feed/Loginpost', {
+    fetch('http://apicalling.herokuapp.com/feed/Loginpost', {
       method: 'POST',
       body: JSON.stringify({
         email: state.email,
