@@ -26,6 +26,14 @@ npm install
 ## Project Link
 <a href="https://cismox-pandachatting.web.app/">Panda Chat</a>
 
+## Advanced features:-
+```text
+->if you not put otp in app until 30 minute.otp automatically invalid
+->some people hijack cookie and try to bypass system.but that not happen because I give 1 hour time period for Token.so token automatically invalid.
+```
+## Where are your BackEnd
+**my backend is credential so some repo are private.so i didn't show that
+
 ## Project motive: 
 ```text
 ->inhance my #MERNStack #skill
@@ -35,6 +43,12 @@ npm install
 ->image compression done but not to much like what's app😀😀
 ->if attacker do unauthorised activity so automatically send data to Backend so we track that user
 ```
+## Team members:-
+```text 
+One man army (front end +backend +API testing +API design +UI )
+-I handle all of stuff like One Man Army
+```
+
 # Frontends
 <!--
   TECHNOLOGY:
