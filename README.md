@@ -2,7 +2,7 @@
   <img src="https://media.giphy.com/media/b2CD0Qrq2ulwY/giphy.gif" alt="MERN stack" align="center" width="250">
 </p>
 
-<h1 align="center"> MERN stack base Todo chatting app</h1>
+<h1 align="center"> Panda Chat</h1>
 <p align="center">
 <a href="https://www.npmjs.com/package/react-poke-sprites">
   <img src="https://img.shields.io/npm/v/react-poke-sprites.svg?style=for-the-badge" align="center">
@@ -22,6 +22,18 @@
 Install the npm module in your app directory.
 ```sh
 npm install
+```
+## Project Link
+<a href="https://cismox-pandachatting.web.app/">Panda Chat</a>
+
+## Project motive: 
+```text
+->inhance my #MERNStack #skill
+ ->This web app influence by what's app.in this app user grouply chat not privately
+->this web app user start to end fully security I give
+->user upload status like #whatsapp
+->image compression done but not to much like what's app😀😀
+->if attacker do unauthorised activity so automatically send data to Backend so we track that user
 ```
 # Frontends
 <!--
