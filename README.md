@@ -2,7 +2,7 @@
   <img src="https://media.giphy.com/media/b2CD0Qrq2ulwY/giphy.gif" alt="MERN stack" align="center" width="250">
 </p>
 
-<h1 align="center"> MERN stack base Todo chatting app in Devlopment Phase </h1>
+<h1 align="center"> MERN stack base Todo chatting app</h1>
 <p align="center">
 <a href="https://www.npmjs.com/package/react-poke-sprites">
   <img src="https://img.shields.io/npm/v/react-poke-sprites.svg?style=for-the-badge" align="center">
